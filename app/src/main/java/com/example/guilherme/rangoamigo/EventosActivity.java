@@ -10,6 +10,6 @@ public class EventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos);
 
-        //teste de alteracao e commit
+        //teste de alteracao e commit denovo
     }
 }
