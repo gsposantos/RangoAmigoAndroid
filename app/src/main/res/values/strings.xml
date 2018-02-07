@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">RangoAmigo</string>
+    <string name="app_name">Rango Amigo</string>
+
+    <string name="urlRangoAmigo">http://www.anjodaguardaeventos.com.br/rangoamigo/</string>
+
+    <string name="login_txtAjuda">Para acessar, por favor, informe seu número de telefone com código de área.</string>
+    <string name="login_hintDDD">DDD</string>
+    <string name="login_hintTelefone">Telefone</string>
+    <string name="login_btnAvancar">Avançar</string>
+    <string name="login_btnNovo">Novo Acesso</string>
+    <string name="login_btnAcessar">Acessar</string>
+
+    <string name="acesso_txtAjudaSms">Enviamos um código por SMS para o telefone informado.</string>
+    <string name="acesso_txtAjudaAcesso">Por favor, informe esse código para prosseguir.</string>
+    <string name="acesso_hintPIN">PIN</string>
+
+    <string name="perfil_hintNome">Nome</string>
+    <string name="perfil_hintEmail">Email</string>
+    <string name="perfil_btnSalvar">Salvar</string>
+
+    <!-- Cabecalho Gaveta -->
+    <string name="drawer_header_text">Rango Amigo</string>
+
+    <!-- Menu Gaveta Tela Acesos -->
+    <string name="nav_item_cadastro">Novo Acesso</string>
+    <string name="nav_item_login">Acessar</string>
+    <string name="nav_item_sair">Fechar</string>
+
+
+    <!-- Menu Gaveta Tela Eventos -->
+    <string name="nav_item_perfil">Editar Perfil</string>
+    <string name="nav_item_logout">Sair</string>
+    <string name="nav_item_fechar">Fechar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

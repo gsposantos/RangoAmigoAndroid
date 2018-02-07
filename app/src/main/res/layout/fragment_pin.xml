@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.guilherme.rangoamigo.activities.AcessoActivity">
+
+
+    <TextView
+        android:id="@+id/txtNumTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        style="@style/textoGrande"
+        android:text="(00) 990909090" />
+
+    <TextView
+        android:id="@+id/txtAjudaSms"
+        style="@style/texotTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="25dp"
+        android:padding="5dp"
+        android:text="@string/acesso_txtAjudaSms"
+        android:textAlignment="center"
+        android:layout_below="@+id/txtNumTelefone"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtAjudaAcesso"
+        style="@style/texotTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/acesso_txtAjudaAcesso"
+        android:textAlignment="center"
+        android:layout_below="@+id/txtAjudaSms"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtPIN"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/floatLabel"
+        android:layout_below="@+id/txtAjudaAcesso"
+        android:layout_marginTop="25dp"
+        android:layout_alignEnd="@+id/txtAjudaAcesso"
+        android:layout_alignStart="@+id/txtAjudaAcesso">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acesso_hintPIN"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textAlignment="center" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnAcessar"
+        style="@style/botaoPadrao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPIN"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignEnd="@+id/txtAjudaAcesso"
+        android:layout_alignStart="@+id/txtAjudaAcesso"
+        android:text="@string/login_btnAcessar" />
+
+    <!-- Animacao de progresso apresentada enquando está processando -->
+    <include layout="@layout/overlay_prog_bar"/>
+
+</RelativeLayout>

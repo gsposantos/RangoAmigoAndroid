@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    tools:context="com.example.guilherme.rangoamigo.activities.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/formTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtAjuda"
+            style="@style/texotTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="50dp"
+            android:elevation="1dp"
+            android:padding="5dp"
+            android:text="@string/login_txtAjuda"
+            android:textAlignment="center" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtDDD"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/txtAjuda"
+            android:layout_below="@+id/txtAjuda"
+            app:hintTextAppearance="@style/floatLabel"
+            android:nextFocusRight="@+id/txtTelefone">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="1dp"
+                android:hint="@string/login_hintDDD"
+                android:inputType="number"
+                android:maxLength="2" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/txtTelefone"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtAjuda"
+            android:layout_below="@+id/txtAjuda"
+            app:hintTextAppearance="@style/floatLabel"
+            android:nextFocusRight="@+id/btnAvancar"
+            android:layout_marginStart="10dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="1dp"
+                android:hint="@string/login_hintTelefone"
+                android:inputType="number"
+                android:maxLength="9" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnAvancar"
+            style="@style/botaoPadrao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtTelefone"
+            android:layout_alignStart="@+id/txtDDD"
+            android:layout_below="@+id/txtTelefone"
+            android:layout_marginTop="30dp"
+            android:elevation="1dp"
+            android:onClick="avancarLogin"
+            android:text="@string/login_btnAvancar" />
+
+        <Button
+            android:id="@+id/btnNovo"
+            style="@style/botaoPadrao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/txtTelefone"
+            android:layout_alignStart="@+id/txtDDD"
+            android:layout_below="@+id/btnAvancar"
+            android:layout_marginTop="30dp"
+            android:elevation="1dp"
+            android:text="@string/login_btnNovo" />
+
+        <!-- Animacao de progresso apresentada enquando está processando -->
+        <include layout="@layout/overlay_prog_bar"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

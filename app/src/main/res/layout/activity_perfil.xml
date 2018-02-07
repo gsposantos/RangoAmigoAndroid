@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.guilherme.rangoamigo.activities.PerfilActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <ImageButton
+        android:id="@+id/imgBtPerfil"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbarPerfil"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/icon_perfil" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtFonePerfil"
+        android:layout_alignStart="@+id/txtFonePerfil"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="120dp"
+        android:id="@+id/txtDDDPerfil">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:hint="@string/login_hintDDD"
+            android:inputType="number"
+            android:maxLength="2" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/imgBtPerfil"
+        android:layout_toEndOf="@+id/imgBtPerfil"
+        android:id="@+id/txtFonePerfil">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:hint="@string/login_hintTelefone"
+            android:inputType="number"
+            android:maxLength="9"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtFonePerfil"
+        android:layout_alignStart="@+id/imgBtPerfil"
+        android:layout_below="@+id/imgBtPerfil"
+        android:layout_marginTop="30dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:hint="@string/perfil_hintNome"
+            android:inputType="text"
+            android:maxLength="100" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtFonePerfil"
+        android:layout_alignStart="@+id/imgBtPerfil"
+        android:layout_below="@+id/txtNome"
+        android:layout_marginTop="20dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:hint="@string/perfil_hintEmail"
+            android:inputType="textEmailAddress"
+            android:maxLength="40" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSalvar"
+        style="@style/botaoPadrao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignEnd="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:text="@string/perfil_btnSalvar" />
+
+    <!-- Animacao de progresso apresentada enquando está processando -->
+    <include layout="@layout/overlay_prog_bar"/>
+
+
+</RelativeLayout>

@@ -1,7 +1,9 @@
-package com.example.guilherme.rangoamigo;
+package com.example.guilherme.rangoamigo.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.guilherme.rangoamigo.R;
 
 public class EventosActivity extends AppCompatActivity {
 
