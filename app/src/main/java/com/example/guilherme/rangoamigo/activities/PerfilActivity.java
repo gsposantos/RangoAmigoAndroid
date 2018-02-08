@@ -44,7 +44,10 @@ import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PerfilActivity extends MasterActivity  {
 
@@ -68,6 +71,8 @@ public class PerfilActivity extends MasterActivity  {
     private String sNome;
     private String sFoto;
 
+    private Perfil oPerfilAux;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,15 +95,6 @@ public class PerfilActivity extends MasterActivity  {
 
             @Override
             public void onClick(View v) {
-
-                //isso deve ir prar o pre execute
-//                btnSalvar.setEnabled(false);
-//                inAnimation = new AlphaAnimation(0f, 1f);
-//                inAnimation.setDuration(200);
-//                progBarHolder.setAnimation(inAnimation);
-//                progBarHolder.setVisibility(View.VISIBLE);
-
-                // execute task
 
                 sDDD = txtDDD.getEditText().getText().toString();
                 sTelefone = txtTelefone.getEditText().getText().toString();
@@ -124,8 +120,6 @@ public class PerfilActivity extends MasterActivity  {
                         task.execute();
                     }
                 }
-
-                //showAlert("Sucesso!", "Perfil Atualizado");
             }
         });
 
@@ -147,25 +141,17 @@ public class PerfilActivity extends MasterActivity  {
         /*Load dos dados se ja estiver logado*/
         if(this.verificaPerfil()){
 
-//            Gson gson = new Gson();
-//            Perfil oPerfil = gson.fromJson(AcessoPreferences.getDadosPerfil(), Perfil.class);
+            oPerfilAux = getPerfilPreferences();
 
-            Gson gson = new Gson();
-            Type listType = new TypeToken<RetornoSimples<Perfil>>(){}.getType();
-            RetornoSimples<Perfil> retornoPerfil = gson.fromJson(AcessoPreferences.getDadosPerfil(), listType);
-
-            Perfil oPerfil = retornoPerfil.Dados;
-
-            String dddAux = Long.toString(oPerfil.CelNumero).substring(0,2);
-            String foneAux = Long.toString(oPerfil.CelNumero).substring(2);
+            String dddAux = Long.toString(oPerfilAux.CelNumero).substring(0,2);
+            String foneAux = Long.toString(oPerfilAux.CelNumero).substring(2);
 
             //preenche os campos
             txtDDD.getEditText().setText(dddAux);
             txtTelefone.getEditText().setText(foneAux);
-            txtNome.getEditText().setText(oPerfil.Nome);
-            txtEmail.getEditText().setText(oPerfil.Email);
-            imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
-            //imgBtPerfil.setImageDrawable(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
+            txtNome.getEditText().setText(oPerfilAux.Nome);
+            txtEmail.getEditText().setText(oPerfilAux.Email);
+            imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfilAux.Foto, this.getResources()));
 
             //desabilita para edicao
             txtDDD.getEditText().setEnabled(false);
@@ -173,12 +159,17 @@ public class PerfilActivity extends MasterActivity  {
             //txtNome.getEditText().setEnabled(false);
             //txtEmail.getEditText().setEnabled(false);
         }
+    }
 
-        /*
-        Intent myIntent = getIntent(); // gets the previously created intent
-        String firstKeyName = myIntent.getStringExtra("firstKeyName"); // retorna null se nao foi passado
-        String secondKeyName= myIntent.getStringExtra("secondKeyName");
-        */
+    private Perfil getPerfilPreferences()
+    {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<RetornoSimples<Perfil>>(){}.getType();
+        RetornoSimples<Perfil> retornoPerfil = gson.fromJson(AcessoPreferences.getDadosPerfil(), listType);
+
+        Perfil oPerfil = retornoPerfil.Dados;
+
+        return oPerfil;
     }
 
     /**
@@ -206,17 +197,37 @@ public class PerfilActivity extends MasterActivity  {
         }
 
         //Email
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if(sEmail.length() == 0){
             this.showAlert("Campos Obrigatórios!", "Preencha o campo Email adequadamente.");
             return false;
         }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(emailPattern).matches()){
+        else if(!emailValido(sEmail)){
             this.showAlert("Formato Incorreto!", "Preencha o campo Email adequadamente.");
             return false;
         }
 
         return retorno;
+    }
+
+    public boolean emailValido(String email)
+    {
+        String regExp =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence stringEntrada = email;
+
+        Pattern pattern = Pattern.compile(regExp,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(stringEntrada);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
     }
 
     /* EVENTO ACTION BAR */
@@ -323,19 +334,42 @@ public class PerfilActivity extends MasterActivity  {
             if(jsonObject != null){
 
                 Gson gson = new Gson();
-                Type listType = new TypeToken<RetornoSimples<Perfil>>(){}.getType();
-                RetornoSimples<Perfil> retornoPerfil = gson.fromJson(jsonObject.toString(), listType);
+                Type listType = new TypeToken<RetornoSimples<Integer>>(){}.getType();
+                RetornoSimples<Integer> retornoPerfil = gson.fromJson(jsonObject.toString(), listType);
 
                 if(retornoPerfil.Ok){
-
-                    if(retornoPerfil.Dados != null){
+                    if(retornoPerfil.Dados == 0){
                         String sMensagem = "";
                         if(verificaPerfil()){
                             sMensagem = "Perfil Cadastrado. Faça login para acessar os eventos";
                         }
                         else                        {
                             sMensagem = "Perfil Alterado. Volte para acessar os eventos ";
+
+                            /*TODO: Recaregar perfil na sessao */
+
+                            oPerfilAux.Email = sEmail;
+                            oPerfilAux.Nome = sNome;
+                            oPerfilAux.Foto = sFoto;
+
+                            RetornoSimples<Perfil> retornoPerfilAux = new RetornoSimples<Perfil>();
+                            retornoPerfilAux.Ok = true;
+
+                            Gson gsonAux= new Gson();
+                            String sJson = gsonAux.toJson(retornoPerfilAux);
+
+                            try {
+
+                                StringEntity jsonString = new StringEntity(sJson);
+                                //Salvar contexto. Ja configurou o contexto.
+                                //AcessoPreferences.setContext(this);
+                                AcessoPreferences.setDadosPerfil(jsonString.toString());
+
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
                         }
+
                         /*TODO: resover isso com callback - TESTAR!!! */
                         //showAlert("Sucesso!", sMensagem, executarAlertOK);
                         showAlert("Sucesso!", sMensagem, new AlertDialogCallback() {
