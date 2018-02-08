@@ -28,6 +28,9 @@
 
 
     <!-- Menu Gaveta Tela Eventos -->
+    <string name="nav_item_eventos">Seus Eventos</string>
+    <string name="nav_item_convites">Seus Convites</string>
+    <string name="nav_item_contatos">Seus Contatos</string>
     <string name="nav_item_perfil">Editar Perfil</string>
     <string name="nav_item_logout">Sair</string>
     <string name="nav_item_fechar">Fechar</string>

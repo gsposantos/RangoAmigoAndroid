@@ -23,6 +23,12 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="textoTituloApp">
+        <item name="android:textColor">@color/secondaryColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">26dp</item>
+    </style>
+
     <style name="texotTitulo">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textStyle">bold</item>

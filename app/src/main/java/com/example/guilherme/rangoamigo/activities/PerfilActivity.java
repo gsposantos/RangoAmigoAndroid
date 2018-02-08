@@ -156,15 +156,16 @@ public class PerfilActivity extends MasterActivity  {
 
             Perfil oPerfil = retornoPerfil.Dados;
 
-            String dddAux = Long.toString(oPerfil.CelNumero).substring(0,1);
-            String foneAux = Long.toString(oPerfil.CelNumero).substring(2,Long.toString(oPerfil.CelNumero).length()-1);
+            String dddAux = Long.toString(oPerfil.CelNumero).substring(0,2);
+            String foneAux = Long.toString(oPerfil.CelNumero).substring(2);
 
             //preenche os campos
             txtDDD.getEditText().setText(dddAux);
             txtTelefone.getEditText().setText(foneAux);
             txtNome.getEditText().setText(oPerfil.Nome);
             txtEmail.getEditText().setText(oPerfil.Email);
-            imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
+            //imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
+            imgBtPerfil.setImageDrawable(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
 
             //desabilita para edicao
             txtDDD.getEditText().setEnabled(false);

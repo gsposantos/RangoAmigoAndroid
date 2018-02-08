@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="150dp"
     android:background="?attr/colorPrimary"
     android:padding="15dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:gravity="bottom">
 
     <TextView
+        style="@style/textoTituloApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/drawer_header_text"

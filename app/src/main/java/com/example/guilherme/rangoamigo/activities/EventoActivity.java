@@ -66,15 +66,15 @@ public class EventoActivity extends MasterActivity   {
         //instancia o NavigationView da main activity para ter o controle
         navigationView = (NavigationView) findViewById(R.id.navigation_view_eventos);
 
+
         /* EVENTO ITEM MENU GAVETA */
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                /*TODO: Descobrir como pegar item pelo ID*/
-
                 // marca item de menu recibio como selecionado
-                item.setChecked(true);
+                //item.setChecked(false);
+
                 //fecha o menu pq o usuário selecionou um item
                 mDrawerLayout.closeDrawers();
 

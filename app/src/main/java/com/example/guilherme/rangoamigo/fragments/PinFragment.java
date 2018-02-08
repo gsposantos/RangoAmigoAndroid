@@ -122,6 +122,6 @@ public class PinFragment extends Fragment {
 
         valPIN = retornoPerfil.getDados().PIN;
         String sNumTelefone = Long.valueOf(retornoPerfil.getDados().CelNumero).toString();
-        txtNumTelefone.setText("(" + sNumTelefone.substring(0,1) + ") " + sNumTelefone.substring(2)) ;
+        txtNumTelefone.setText("(" + sNumTelefone.substring(0,2) + ") " + sNumTelefone.substring(2)) ;
     }
 }
