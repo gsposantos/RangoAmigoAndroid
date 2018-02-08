@@ -105,7 +105,7 @@ public class PerfilActivity extends MasterActivity  {
                 sNome = txtNome.getEditText().getText().toString();
                 sEmail = txtEmail.getEditText().getText().toString();
 
-                BitmapDrawable drawable = (BitmapDrawable) imgBtPerfil.getDrawable();
+                BitmapDrawable drawable = (BitmapDrawable) imgBtPerfil.getBackground();
                 Bitmap bitmap = drawable.getBitmap();
 
                 if (bAlterouImagem) {
@@ -164,8 +164,8 @@ public class PerfilActivity extends MasterActivity  {
             txtTelefone.getEditText().setText(foneAux);
             txtNome.getEditText().setText(oPerfil.Nome);
             txtEmail.getEditText().setText(oPerfil.Email);
-            //imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
-            imgBtPerfil.setImageDrawable(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
+            imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
+            //imgBtPerfil.setImageDrawable(ControleImagem.decodeBase64(oPerfil.Foto, this.getResources()));
 
             //desabilita para edicao
             txtDDD.getEditText().setEnabled(false);
