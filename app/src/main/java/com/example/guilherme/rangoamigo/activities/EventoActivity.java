@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.guilherme.rangoamigo.R;
+import com.example.guilherme.rangoamigo.fragments.ContatoFragment;
 import com.example.guilherme.rangoamigo.fragments.ConviteFragment;
 import com.example.guilherme.rangoamigo.fragments.EventoFragment;
 import com.example.guilherme.rangoamigo.utils.access.AcessoPreferences;
@@ -156,6 +157,7 @@ public class EventoActivity extends MasterActivity   {
         pagerAdapter .addFragment(new EventoFragment(), "Seus Eventos");
         pagerAdapter .addFragment(new ConviteFragment(), "Seus Convites");
         /*TODO: fragment contatos*/
+        pagerAdapter .addFragment(new ContatoFragment(), "Seus Contatos");
         viewPager.setAdapter(pagerAdapter);
     }
 
