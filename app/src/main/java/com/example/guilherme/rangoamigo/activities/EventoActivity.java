@@ -154,10 +154,10 @@ public class EventoActivity extends MasterActivity   {
     private void setupViewPage(ViewPager viewPager){
         /* Instancia uma ViewPager e o PagerAdapter. */
         pagerAdapter = new EventoActivity.ViewPagerAdapter(getSupportFragmentManager());
-        pagerAdapter .addFragment(new EventoFragment(), "Seus Eventos");
-        pagerAdapter .addFragment(new ConviteFragment(), "Seus Convites");
+        pagerAdapter .addFragment(new EventoFragment(), "Eventos");
+        pagerAdapter .addFragment(new ConviteFragment(), "Convites");
         /*TODO: fragment contatos*/
-        pagerAdapter .addFragment(new ContatoFragment(), "Seus Contatos");
+        pagerAdapter .addFragment(new ContatoFragment(), "Contatos");
         viewPager.setAdapter(pagerAdapter);
     }
 

@@ -32,7 +32,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Intent intent;
                 if(!AcessoPreferences.getDadosPerfil().isEmpty()){
                     intent = new Intent(SplashScreenActivity.this,EventoActivity.class);
-                    //passar parametros?...
                 }
                 else{
                     intent = new Intent(SplashScreenActivity.this,AcessoActivity.class);

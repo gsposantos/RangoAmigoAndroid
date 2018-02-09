@@ -212,7 +212,7 @@ public class PerfilActivity extends MasterActivity  {
         return retorno;
     }
 
-    public boolean emailValido(String email)
+    private boolean emailValido(String email)
     {
         String regExp =
                 "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
