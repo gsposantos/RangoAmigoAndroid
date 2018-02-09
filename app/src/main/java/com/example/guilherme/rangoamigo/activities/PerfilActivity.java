@@ -72,6 +72,7 @@ public class PerfilActivity extends MasterActivity  {
     private String sFoto;
 
     private Perfil oPerfilAux;
+    private RetornoSimples<Perfil> oRetPerfilAux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +152,9 @@ public class PerfilActivity extends MasterActivity  {
             txtTelefone.getEditText().setText(foneAux);
             txtNome.getEditText().setText(oPerfilAux.Nome);
             txtEmail.getEditText().setText(oPerfilAux.Email);
-            imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfilAux.Foto, this.getResources()));
+
+            if(oPerfilAux.Foto != null)
+                imgBtPerfil.setBackground(ControleImagem.decodeBase64(oPerfilAux.Foto, this.getResources()));
 
             //desabilita para edicao
             txtDDD.getEditText().setEnabled(false);
@@ -165,9 +168,9 @@ public class PerfilActivity extends MasterActivity  {
     {
         Gson gson = new Gson();
         Type listType = new TypeToken<RetornoSimples<Perfil>>(){}.getType();
-        RetornoSimples<Perfil> retornoPerfil = gson.fromJson(AcessoPreferences.getDadosPerfil(), listType);
+        oRetPerfilAux = gson.fromJson(AcessoPreferences.getDadosPerfil(), listType);
 
-        Perfil oPerfil = retornoPerfil.Dados;
+        Perfil oPerfil = oRetPerfilAux.Dados;
 
         return oPerfil;
     }
@@ -338,40 +341,30 @@ public class PerfilActivity extends MasterActivity  {
                 RetornoSimples<Integer> retornoPerfil = gson.fromJson(jsonObject.toString(), listType);
 
                 if(retornoPerfil.Ok){
-                    if(retornoPerfil.Dados == 0){
+                    if(retornoPerfil.Dados == 1){
                         String sMensagem = "";
-                        if(verificaPerfil()){
+                        if(!verificaPerfil()){
                             sMensagem = "Perfil Cadastrado. Faça login para acessar os eventos";
                         }
                         else                        {
                             sMensagem = "Perfil Alterado. Volte para acessar os eventos ";
 
-                            /*TODO: Recaregar perfil na sessao */
+                            /*Recarega perfil na sessao */
 
-                            oPerfilAux.Email = sEmail;
-                            oPerfilAux.Nome = sNome;
-                            oPerfilAux.Foto = sFoto;
+                            if(sEmail != null)
+                                oRetPerfilAux.Dados.Email = sEmail;
 
-                            RetornoSimples<Perfil> retornoPerfilAux = new RetornoSimples<Perfil>();
-                            retornoPerfilAux.Ok = true;
+                            if(sNome != null)
+                                oRetPerfilAux.Dados.Nome = sNome;
+
+                            if(sFoto != null)
+                                oRetPerfilAux.Dados.Foto = sFoto;
 
                             Gson gsonAux= new Gson();
-                            String sJson = gsonAux.toJson(retornoPerfilAux);
-
-                            try {
-
-                                StringEntity jsonString = new StringEntity(sJson);
-                                //Salvar contexto. Ja configurou o contexto.
-                                //AcessoPreferences.setContext(this);
-                                AcessoPreferences.setDadosPerfil(jsonString.toString());
-
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
+                            String sJson = gsonAux.toJson(oRetPerfilAux);
+                            AcessoPreferences.setDadosPerfil(sJson);
                         }
 
-                        /*TODO: resover isso com callback - TESTAR!!! */
-                        //showAlert("Sucesso!", sMensagem, executarAlertOK);
                         showAlert("Sucesso!", sMensagem, new AlertDialogCallback() {
                             @Override
                             public void call() {

@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 
 import com.example.guilherme.rangoamigo.R;
 import com.example.guilherme.rangoamigo.activities.AcessoActivity;
+import com.example.guilherme.rangoamigo.activities.EventoActivity;
 import com.example.guilherme.rangoamigo.activities.MasterActivity;
 import com.example.guilherme.rangoamigo.activities.SplashScreenActivity;
 import com.example.guilherme.rangoamigo.adapters.EventoAdapter;
@@ -85,7 +86,7 @@ public class EventoFragment extends Fragment {
         return view;
     }
 
-    private void atualizaLsita(ArrayList<Evento> lista){
+    private void atualizaLista(ArrayList<Evento> lista){
         this.eventoAdapter.setEventos(lista);
         this.eventoAdapter.notifyDataSetChanged();
     }
@@ -104,7 +105,7 @@ public class EventoFragment extends Fragment {
         protected void onPreExecute() {
 
             if(!NetworkState.isNetworkAvaible(getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))){
-                ((MasterActivity)getActivity()).showAlert("Erro de Conexão!", "É necessário conexão com internet para executar essa operação.");
+                ((EventoActivity)getActivity()).apresentaMensagem("Erro de Conexão!", "É necessário conexão com internet para executar essa operação.");
             }
 
 
@@ -149,7 +150,7 @@ public class EventoFragment extends Fragment {
             }
             catch (Exception e)
             {
-                ((MasterActivity)getActivity()).showAlert("Erro de consulta!", "Ocorreu um erro tentando consultar os dados");
+                ((EventoActivity)getActivity()).apresentaMensagem("Erro de consulta!", "Ocorreu um erro tentando consultar os dados");
             }
 
             return null;
@@ -175,17 +176,20 @@ public class EventoFragment extends Fragment {
                 if(retornoEventos.Ok){
                     if(retornoEventos.Dados != null){
 
-                        /*TODO: Testar se tem registros */
-                        atualizaLsita(retornoEventos.Dados);
+                        /*TODO: Testar se tem registros e mostrar mensagem*/
+                        if(retornoEventos.Dados.size() > 0)
+                            atualizaLista(retornoEventos.Dados);
+                        // else mostra mesangem de registros nao encontado
+
                     }
                     else{
-                        ((MasterActivity)getActivity()).showAlert("Informação", "Eventos não encontrados.");
+                        ((EventoActivity)getActivity()).apresentaMensagem("Informação", "Eventos não encontrados.");
                     }
                 }
                 else
                 {
                     //mensagem de erro
-                    ((MasterActivity)getActivity()).showAlert("Informação", retornoEventos.Mensagem);
+                    ((EventoActivity)getActivity()).apresentaMensagem("Informação", retornoEventos.Mensagem);
                 }
 
                 Log.i("ObjetoJson - >",jsonObject.toString());

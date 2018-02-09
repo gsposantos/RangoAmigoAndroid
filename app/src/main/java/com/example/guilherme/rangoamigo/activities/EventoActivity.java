@@ -159,6 +159,10 @@ public class EventoActivity extends MasterActivity   {
         viewPager.setAdapter(pagerAdapter);
     }
 
+    public void apresentaMensagem(String sTitulo, String sMensagem){
+        this.showAlert(sTitulo, sMensagem);
+    }
+
     /* EVENTO ACTION BAR */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
