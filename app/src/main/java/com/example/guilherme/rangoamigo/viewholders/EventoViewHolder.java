@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.guilherme.rangoamigo.R;
 import com.example.guilherme.rangoamigo.activities.CadastroEventoActivity;
+import com.example.guilherme.rangoamigo.activities.DetalheEventoActivity;
 
 /**
  * Created by Guilherme on 04/02/2018.
@@ -39,7 +40,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     public void onClick(View view) {
         //Toast.makeText(view.getContext(), "Evento = " + String.valueOf(this.codEvento), Toast.LENGTH_SHORT).show();
         /*TODO: Intent para tela de cadastro de evento*/
-        Intent intent = new Intent(view.getContext(), CadastroEventoActivity.class);
+        Intent intent = new Intent(view.getContext(), DetalheEventoActivity.class);
         intent.putExtra("CodEvento", String.valueOf(this.codEvento));
             view.getContext().startActivity(intent);
     }

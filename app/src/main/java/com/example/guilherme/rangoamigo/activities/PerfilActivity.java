@@ -81,6 +81,7 @@ public class PerfilActivity extends MasterActivity  {
 
         // toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbarPerfil);
+        toolbar.setTitle("Perfil");
         setSupportActionBar(toolbar);
 
         // add back arrow to toolbar

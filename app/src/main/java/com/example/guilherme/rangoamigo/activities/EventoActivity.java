@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.guilherme.rangoamigo.R;
+import com.example.guilherme.rangoamigo.adapters.ViewPagerAdapter;
 import com.example.guilherme.rangoamigo.fragments.ContatoFragment;
 import com.example.guilherme.rangoamigo.fragments.ConviteFragment;
 import com.example.guilherme.rangoamigo.fragments.EventoFragment;
@@ -153,11 +154,11 @@ public class EventoActivity extends MasterActivity   {
 
     private void setupViewPage(ViewPager viewPager){
         /* Instancia uma ViewPager e o PagerAdapter. */
-        pagerAdapter = new EventoActivity.ViewPagerAdapter(getSupportFragmentManager());
-        pagerAdapter .addFragment(new EventoFragment(), "Eventos");
-        pagerAdapter .addFragment(new ConviteFragment(), "Convites");
+        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new EventoFragment(), "Eventos");
+        pagerAdapter.addFragment(new ConviteFragment(), "Convites");
         /*TODO: fragment contatos*/
-        pagerAdapter .addFragment(new ContatoFragment(), "Contatos");
+        pagerAdapter.addFragment(new ContatoFragment(), "Contatos");
         viewPager.setAdapter(pagerAdapter);
     }
 
@@ -179,35 +180,6 @@ public class EventoActivity extends MasterActivity   {
                 return true;
             default:
                 return false;
-        }
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragamentList = new ArrayList<Fragment>();
-        private final List<String> mFragamentTitleList = new ArrayList<String>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragamentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragamentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title){
-            mFragamentList.add(fragment);
-            mFragamentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragamentTitleList.get(position);
         }
     }
 

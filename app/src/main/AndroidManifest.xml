@@ -24,7 +24,8 @@
         </activity>
         <activity android:name=".activities.AcessoActivity" />
         <activity android:name=".activities.PerfilActivity" />
-        <activity android:name=".activities.CadastroEventoActivity"></activity>
+        <activity android:name=".activities.CadastroEventoActivity" />
+        <activity android:name=".activities.DetalheEventoActivity"></activity>
     </application>
 
 </manifest>

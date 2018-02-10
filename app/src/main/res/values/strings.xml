@@ -18,6 +18,9 @@
     <string name="perfil_hintEmail">Email</string>
     <string name="perfil_btnSalvar">Salvar</string>
 
+    <!-- Detalhe Evento-->
+    <string name="detalheEvento_titulo">Detalhes do Evento</string>
+
     <!-- Cabecalho Gaveta -->
     <string name="drawer_header_text">Rango Amigo</string>
 

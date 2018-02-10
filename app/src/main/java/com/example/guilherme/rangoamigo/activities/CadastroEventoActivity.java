@@ -34,7 +34,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
 
         // toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbarPerfil);
+        toolbar = (Toolbar) findViewById(R.id.toolbarCadEvento);
         setSupportActionBar(toolbar);
 
         // add back arrow to toolbar
