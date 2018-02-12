@@ -34,12 +34,11 @@ public class DetalheEventoActivity extends MasterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhe_evento);/*TODO: Consultar dados do evento */
+        setContentView(R.layout.activity_detalhe_evento);
+
+        /*TODO: Consultar dados do evento */
         Intent it = getIntent();
         this.sCodEvento = it.getStringExtra("CodEvento");
-
-        //Toast.makeText(this, "Evento = " + sCodEvento, Toast.LENGTH_LONG).show();
-
 
         // toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbarDetalheEvento);

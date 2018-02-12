@@ -49,9 +49,6 @@ public class EventoAdapter extends RecyclerView.Adapter {
         EventoViewHolder holder = (EventoViewHolder) viewHolder;
         Evento evento =  eventos.get(position);
 
-        /*TODO: Converter imagem base64 para drawable */
-        //holder.imgEvento.setBackground(ControleImagem.decodeBase64(evento.Imagem, context.getResources()));
-
         holder.imgEvento.setImageDrawable(ControleImagem.decodeBase64(evento.Imagem, context.getResources()));
 
         holder.codEvento = evento.CodEvento;

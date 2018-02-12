@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/contato_container"
+    android:layout_width="match_parent"
+    android:layout_height="95dp"
+    android:background="@color/secondaryTextColor">
+
+
+    <ImageView
+        android:id="@+id/imageContato"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        app:srcCompat="@drawable/icon_perfil" />
+
+    <TextView
+        android:id="@+id/txtNomeEvento"
+        style="@style/textoTituloLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageContato"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/imageContato"
+        android:text="Nome do Contato" />
+
+    <TextView
+        style="@style/textoLista"
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageContato"
+        android:layout_alignStart="@+id/txtNomeEvento"
+        android:text="umteste@teste.com" />
+
+    <TextView
+        style="@style/textoLista"
+        android:id="@+id/txtTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtEmail"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:text="51 999999999" />
+
+</RelativeLayout>
