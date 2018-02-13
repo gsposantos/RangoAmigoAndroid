@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Contato {
 
+    public boolean cadastrado;
     public String id;
     public String nome;
     public String foto;

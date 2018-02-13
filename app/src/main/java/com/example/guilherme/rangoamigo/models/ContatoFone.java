@@ -5,11 +5,13 @@ package com.example.guilherme.rangoamigo.models;
  */
 
 public class ContatoFone {
-    public String numero;
+
+    public String fone;
+    public long numero;
     public String tipo;
 
-    public ContatoFone(String numero, String tipo) {
-        this.numero = numero;
+    public ContatoFone(String fone, String tipo) {
+        this.fone = fone;
         this.tipo = tipo;
     }
 }

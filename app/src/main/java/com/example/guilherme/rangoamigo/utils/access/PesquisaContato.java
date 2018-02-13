@@ -70,13 +70,18 @@ public class PesquisaContato {
 
         c.close();
 
+        //carrega apenas telefone celular
         this.combinarNumerosContato(contatosMap);
+
+        //carrega email
         this.combinarEmailsContato(contatosMap);
 
-        return listaContatos;
+        //retorna apenas contatos com pelo menos um numero celular
+        return this.filtrarContato(listaContatos);
+
     }
 
-    public void combinarNumerosContato(Map<String, Contato> contatoMap) {
+    private void combinarNumerosContato(Map<String, Contato> contatoMap) {
 
         // pesquisa numeros
         final String[] retornoNumeros = new String[]{
@@ -85,6 +90,7 @@ public class PesquisaContato {
                 Phone.CONTACT_ID,
         };
 
+        //String selectionArgs[] = {String.valueOf(Phone.TYPE_MOBILE)};
         CursorLoader cursorLoader = new CursorLoader(context,
                 Phone.CONTENT_URI,
                 retornoNumeros, // colunas retornadas
@@ -108,16 +114,18 @@ public class PesquisaContato {
                     continue;
                 }
                 final int tipo = fone.getInt(indiceTipoContato);
-                String customLabel = "Custom";
-                CharSequence phoneType = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(), tipo, customLabel);
-                contato.adicionaNumero(numero, phoneType.toString());
+                if(Phone.TYPE_MOBILE == tipo) {
+                    String customLabel = "Custom";
+                    CharSequence phoneType = ContactsContract.CommonDataKinds.Phone.getTypeLabel(context.getResources(), tipo, customLabel);
+                    contato.adicionaNumero(numero, phoneType.toString());
+                }
                 fone.moveToNext();
             }
         }
         fone.close();
     }
 
-    public void combinarEmailsContato(Map<String, Contato> contatoMap) {
+    private void combinarEmailsContato(Map<String, Contato> contatoMap) {
 
         // pesquisa email
         final String[] retornoEmail = new String[]{
@@ -157,6 +165,16 @@ public class PesquisaContato {
         }
 
         email.close();
+    }
+
+    private ArrayList<Contato> filtrarContato(ArrayList<Contato> listaContatos){
+
+        for (int i = listaContatos.size()-1; i >= 0; i--){
+            if(listaContatos.get(i).numeros.size()==0){
+                listaContatos.remove(i);
+            }
+        }
+        return listaContatos;
     }
 
 }

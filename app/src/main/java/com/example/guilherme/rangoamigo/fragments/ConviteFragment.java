@@ -71,6 +71,13 @@ public class ConviteFragment extends Fragment {
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
 
+       this.carregaConvites();
+
+        return view;
+    }
+
+    public void carregaConvites(){
+
         ConviteAsyncTask task = new ConviteAsyncTask();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -78,9 +85,6 @@ public class ConviteFragment extends Fragment {
         } else {
             task.execute();
         }
-
-        return view;
-        //return inflater.inflate(R.layout.fragment_convite, container, false);
     }
 
     private void atualizaLsita(ArrayList<Evento> lista){

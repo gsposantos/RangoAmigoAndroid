@@ -27,4 +27,16 @@ public class AcessoPreferences {
         editor.putString("perfil_json", json);
         editor.commit();
     }
+
+    public static String getDadosContatos(){
+        SharedPreferences preferences = AcessoPreferences.mContext.getSharedPreferences(PREFS_NAME, 0);
+        return preferences.getString("contatos_json", "");
+    }
+
+    public static void setDadosContatos(String json)
+    {
+        SharedPreferences.Editor editor = AcessoPreferences.mContext.getSharedPreferences(PREFS_NAME, 0).edit();
+        editor.putString("contatos_json", json);
+        editor.commit();
+    }
 }

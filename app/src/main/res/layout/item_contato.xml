@@ -10,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/imageContato"
+        android:id="@+id/imgContato"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
@@ -19,30 +19,30 @@
         app:srcCompat="@drawable/icon_perfil" />
 
     <TextView
-        android:id="@+id/txtNomeEvento"
+        android:id="@+id/txtNomeContato"
         style="@style/textoTituloLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageContato"
+        android:layout_alignTop="@+id/imgContato"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/imageContato"
+        android:layout_toEndOf="@+id/imgContato"
         android:text="Nome do Contato" />
 
     <TextView
         style="@style/textoLista"
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtEmailContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageContato"
-        android:layout_alignStart="@+id/txtNomeEvento"
+        android:layout_alignBottom="@+id/imgContato"
+        android:layout_alignStart="@+id/txtNomeContato"
         android:text="umteste@teste.com" />
 
     <TextView
         style="@style/textoLista"
-        android:id="@+id/txtTelefone"
+        android:id="@+id/txtFoneContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtEmail"
+        android:layout_alignBottom="@+id/txtEmailContato"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:text="51 999999999" />

@@ -75,6 +75,13 @@ public class EventoFragment extends Fragment {
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
 
+        this.carregaEventos();
+
+        return view;
+    }
+
+    public void carregaEventos()
+    {
         EventoAsyncTask task = new EventoAsyncTask();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -82,8 +89,6 @@ public class EventoFragment extends Fragment {
         } else {
             task.execute();
         }
-
-        return view;
     }
 
     private void atualizaLista(ArrayList<Evento> lista){
@@ -107,7 +112,6 @@ public class EventoFragment extends Fragment {
             if(!NetworkState.isNetworkAvaible(getActivity().getSystemService(Context.CONNECTIVITY_SERVICE))){
                 ((EventoActivity)getActivity()).apresentaMensagem("Erro de Conexão!", "É necessário conexão com internet para executar essa operação.");
             }
-
 
             //btn.setEnabled(false);
             inAnimation = new AlphaAnimation(0f, 1f);
