@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,7 @@ public class EventoActivity extends MasterActivity   {
     private ViewPagerAdapter pagerAdapter;
     private ViewPager viewPagerEvento;
     private TabLayout tabEvento;
+    private int tabEventoPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +119,22 @@ public class EventoActivity extends MasterActivity   {
         tabEvento.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                //psiciona tab
                 viewPagerEvento.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 0) {
+
+                //limpar action menu e guardar posicao selecionada
+                tabEventoPosition = tab.getPosition();
+                invalidateOptionsMenu();
+
+                if (tabEventoPosition == 0) {
+
                     //atualiar fragment de eventos
-                } else if (tab.getPosition() == 1) {
+
+                } else if (tabEventoPosition == 1) {
                     //atualiar fragment de convites
+
                 } else {
-                    //atualiar fragment de eventos
+                    //atualiar fragment de contatos
                 }
             }
 
@@ -167,6 +179,30 @@ public class EventoActivity extends MasterActivity   {
     }
 
     /* EVENTO ACTION BAR */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+
+        //verificar qual tab esta seleciona para inflar o menu certo.
+        if (tabEventoPosition == 0)
+        {
+            //carrega opcoes eventos
+            inflater.inflate(R.menu.menu_evento, menu);
+        }
+        else if (tabEventoPosition == 1) {
+            //carrega action eventos
+            inflater.inflate(R.menu.menu_evento, menu);
+        }
+        else {
+            //carrega opcoes contatos
+            inflater.inflate(R.menu.menu_contato, menu);
+        }
+
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -174,9 +210,20 @@ public class EventoActivity extends MasterActivity   {
         int id = item.getItemId();
 
         switch (id){
+
             case android.R.id.home:
                 // clicou no icone para abrir o mennu
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.menu_item_sincronizar:
+                //para sincronizar os contatos deve chamar o método do fragment de contatos.
+
+                return true;
+
+            case R.id.menu_item_atualizar_eventos:
+                //para atualizar os eventos deve chamar o método do fragment de eventos.
+
                 return true;
             default:
                 return false;
