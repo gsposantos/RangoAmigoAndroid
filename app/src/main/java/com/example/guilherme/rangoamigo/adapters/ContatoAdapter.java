@@ -30,7 +30,7 @@ public class ContatoAdapter extends RecyclerView.Adapter {
 
     private Context context;
     private ArrayList<Contato> contatos;
-    private int msgVazio;
+    private int msgVazio = 0;
 
 
     public ContatoAdapter(ArrayList<Contato> contatos, Context context) {
@@ -94,7 +94,9 @@ public class ContatoAdapter extends RecyclerView.Adapter {
         }
         else if(tipo == VIEW_VAZIO){
             VazioViewHolder vazioHolder = (VazioViewHolder) viewHolder;
-            vazioHolder.textoVazio.setText(this.msgVazio);
+
+            if(this.msgVazio > 0)
+                vazioHolder.textoVazio.setText(this.msgVazio);
         }
     }
 

@@ -67,7 +67,6 @@ public class ConviteFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recView);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
-        eventoAdapter.setMsgVazio(R.string.convite_sem_registros);
 
         recyclerView.setAdapter(eventoAdapter);
 
@@ -91,6 +90,7 @@ public class ConviteFragment extends Fragment {
     }
 
     private void atualizaLista(ArrayList<Evento> lista){
+        this.eventoAdapter.setMsgVazio(R.string.convite_sem_registros);
         this.eventoAdapter.setEventos(lista);
         this.eventoAdapter.notifyDataSetChanged();
     }
@@ -117,7 +117,6 @@ public class ConviteFragment extends Fragment {
             inAnimation.setDuration(200);
             progBarHolder.setAnimation(inAnimation);
             progBarHolder.setVisibility(View.VISIBLE);
-
         }
 
         @Override
@@ -164,12 +163,6 @@ public class ConviteFragment extends Fragment {
 
             JSONArray jsonArray;
 
-            outAnimation = new AlphaAnimation(1f, 0f);
-            outAnimation.setDuration(200);
-            progBarHolder.setAnimation(outAnimation);
-            progBarHolder.setVisibility(View.GONE);
-            //btn.setEnabled(true);
-
             if(jsonObject != null){
 
                 Gson gson = new Gson();
@@ -198,6 +191,12 @@ public class ConviteFragment extends Fragment {
 
                 Log.i("ObjetoJson - >",jsonObject.toString());
             }
+
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progBarHolder.setAnimation(outAnimation);
+            progBarHolder.setVisibility(View.GONE);
+            //btn.setEnabled(true);
         }
     }
 

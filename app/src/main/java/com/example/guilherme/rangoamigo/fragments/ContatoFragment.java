@@ -76,7 +76,7 @@ public class ContatoFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recViewContatos);
         listaContatos = new ArrayList<Contato>();
         contatoAdapter = new ContatoAdapter(listaContatos, view.getContext());
-        contatoAdapter.setMsgVazio(R.string.convite_sem_registros);
+
         recyclerView.setAdapter(contatoAdapter);
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -123,6 +123,7 @@ public class ContatoFragment extends Fragment {
     }
 
     private void atualizaLista(ArrayList<Contato> lista){
+        this.contatoAdapter.setMsgVazio(R.string.convite_sem_registros);
         this.contatoAdapter.setContatos(lista);
         this.contatoAdapter.notifyDataSetChanged();
     }
@@ -217,11 +218,6 @@ public class ContatoFragment extends Fragment {
 
             JSONArray jsonArray;
 
-            outAnimation = new AlphaAnimation(1f, 0f);
-            outAnimation.setDuration(200);
-            progBarHolder.setAnimation(outAnimation);
-            progBarHolder.setVisibility(View.GONE);
-
             if(jsonObject != null){
 
                 Gson gson = new Gson();
@@ -280,6 +276,11 @@ public class ContatoFragment extends Fragment {
                 Log.i("Sincronizados - >", jsonContatos);
 
             }
+
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progBarHolder.setAnimation(outAnimation);
+            progBarHolder.setVisibility(View.GONE);
         }
     }
 

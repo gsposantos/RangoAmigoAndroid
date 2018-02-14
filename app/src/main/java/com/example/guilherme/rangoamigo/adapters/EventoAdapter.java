@@ -78,7 +78,9 @@ public class EventoAdapter extends RecyclerView.Adapter {
         }
         else if(tipo == VIEW_VAZIO){
             VazioViewHolder vazioHolder = (VazioViewHolder) viewHolder;
-            vazioHolder.textoVazio.setText(this.msgVazio);
+
+            if(this.msgVazio > 0)
+                vazioHolder.textoVazio.setText(this.msgVazio);
         }
     }
 

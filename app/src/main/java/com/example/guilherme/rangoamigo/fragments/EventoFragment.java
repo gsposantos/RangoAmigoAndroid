@@ -70,7 +70,6 @@ public class EventoFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recView);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
-        eventoAdapter.setMsgVazio(R.string.evento_sem_registros);
         recyclerView.setAdapter(eventoAdapter);
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -93,6 +92,7 @@ public class EventoFragment extends Fragment {
     }
 
     private void atualizaLista(ArrayList<Evento> lista) {
+        this.eventoAdapter.setMsgVazio(R.string.evento_sem_registros);
         this.eventoAdapter.setEventos(lista);
         this.eventoAdapter.notifyDataSetChanged();
     }
@@ -166,12 +166,6 @@ public class EventoFragment extends Fragment {
 
             JSONArray jsonArray;
 
-            outAnimation = new AlphaAnimation(1f, 0f);
-            outAnimation.setDuration(200);
-            progBarHolder.setAnimation(outAnimation);
-            progBarHolder.setVisibility(View.GONE);
-            //btn.setEnabled(true);
-
             if(jsonObject != null){
 
                 Gson gson = new Gson();
@@ -202,6 +196,13 @@ public class EventoFragment extends Fragment {
 
                 Log.i("eventosJson - >",jsonObject.toString());
             }
+
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progBarHolder.setAnimation(outAnimation);
+            progBarHolder.setVisibility(View.GONE);
+            //btn.setEnabled(true);
+
         }
     }
 }
