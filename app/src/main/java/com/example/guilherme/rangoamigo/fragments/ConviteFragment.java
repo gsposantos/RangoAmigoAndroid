@@ -17,6 +17,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 
 import com.example.guilherme.rangoamigo.R;
+import com.example.guilherme.rangoamigo.activities.AcessoActivity;
 import com.example.guilherme.rangoamigo.activities.EventoActivity;
 import com.example.guilherme.rangoamigo.activities.MasterActivity;
 import com.example.guilherme.rangoamigo.adapters.EventoAdapter;
@@ -66,6 +67,8 @@ public class ConviteFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recView);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
+        eventoAdapter.setMsgVazio(R.string.convite_sem_registros);
+
         recyclerView.setAdapter(eventoAdapter);
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -87,7 +90,7 @@ public class ConviteFragment extends Fragment {
         }
     }
 
-    private void atualizaLsita(ArrayList<Evento> lista){
+    private void atualizaLista(ArrayList<Evento> lista){
         this.eventoAdapter.setEventos(lista);
         this.eventoAdapter.notifyDataSetChanged();
     }
@@ -143,9 +146,9 @@ public class ConviteFragment extends Fragment {
                 {
                     //desvia para login
                     Intent intent;
-//                    intent = new Intent(SplashScreenActivity.this,AcessoActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                    intent = new Intent(getActivity(), AcessoActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
             catch (Exception e)
@@ -177,10 +180,14 @@ public class ConviteFragment extends Fragment {
                     if(retornoEventos.Dados != null){
 
                         /*TODO: Testar se tem registros e mostrar mensagem*/
-                        atualizaLsita(retornoEventos.Dados);
+                        if(retornoEventos.Dados.size() > 0) {
+                            atualizaLista(retornoEventos.Dados);
+                        }
+                        else {
+                            atualizaLista(new ArrayList<Evento>());
+                        }
                     }
                     else{
-
                         ((EventoActivity)getActivity()).apresentaMensagem("Informação", "Eventos não encontrados.");
                     }
                 }

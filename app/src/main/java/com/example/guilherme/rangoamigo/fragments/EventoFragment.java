@@ -70,6 +70,7 @@ public class EventoFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recView);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
+        eventoAdapter.setMsgVazio(R.string.evento_sem_registros);
         recyclerView.setAdapter(eventoAdapter);
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -91,7 +92,7 @@ public class EventoFragment extends Fragment {
         }
     }
 
-    private void atualizaLista(ArrayList<Evento> lista){
+    private void atualizaLista(ArrayList<Evento> lista) {
         this.eventoAdapter.setEventos(lista);
         this.eventoAdapter.notifyDataSetChanged();
     }
@@ -147,9 +148,9 @@ public class EventoFragment extends Fragment {
                 {
                     //desvia para login
                     Intent intent;
-//                    intent = new Intent(SplashScreenActivity.this,AcessoActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                    intent = new Intent(getActivity(), AcessoActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
             catch (Exception e)
@@ -180,11 +181,14 @@ public class EventoFragment extends Fragment {
                 if(retornoEventos.Ok){
                     if(retornoEventos.Dados != null){
 
-                        /*TODO: Testar se tem registros e mostrar mensagem*/
-                        if(retornoEventos.Dados.size() > 0)
-                            atualizaLista(retornoEventos.Dados);
-                        // else mostra mesangem de registros nao encontado
+                        /*TODO: Testar se tem registros e mostrar mensagem - TESTAR */
 
+                        if(retornoEventos.Dados.size() > 0) {
+                            atualizaLista(retornoEventos.Dados);
+                        }
+                        else {
+                            atualizaLista(new ArrayList<Evento>());
+                        }
                     }
                     else{
                         ((EventoActivity)getActivity()).apresentaMensagem("Informação", "Eventos não encontrados.");
@@ -196,7 +200,7 @@ public class EventoFragment extends Fragment {
                     ((EventoActivity)getActivity()).apresentaMensagem("Informação", retornoEventos.Mensagem);
                 }
 
-                Log.i("ObjetoJson - >",jsonObject.toString());
+                Log.i("eventosJson - >",jsonObject.toString());
             }
         }
     }

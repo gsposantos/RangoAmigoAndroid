@@ -76,6 +76,7 @@ public class ContatoFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recViewContatos);
         listaContatos = new ArrayList<Contato>();
         contatoAdapter = new ContatoAdapter(listaContatos, view.getContext());
+        contatoAdapter.setMsgVazio(R.string.convite_sem_registros);
         recyclerView.setAdapter(contatoAdapter);
 
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -134,7 +135,9 @@ public class ContatoFragment extends Fragment {
                 // Permission is granted
                 buscaContaotosDipositivo();
             } else {
-                //Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+
+                ((EventoActivity)getActivity()).apresentaMensagem("Necessário Permissão!",
+                        "Conceda permissão para listar os contatos.");
             }
         }
     }

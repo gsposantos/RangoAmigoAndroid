@@ -10,6 +10,9 @@
     <string name="login_btnNovo">Novo Acesso</string>
     <string name="login_btnAcessar">Acessar</string>
 
+    <string name="evento_sem_registros">Você não tem eventos cadastrados.</string>
+    <string name="convite_sem_registros">Você não tem convites cadastrados.</string>
+
     <string name="acesso_txtAjudaSms">Enviamos um código por SMS para o telefone informado.</string>
     <string name="acesso_txtAjudaAcesso">Por favor, informe esse código para prosseguir.</string>
     <string name="acesso_hintPIN">PIN</string>
