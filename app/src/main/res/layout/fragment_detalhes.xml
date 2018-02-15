@@ -1,39 +1,95 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.guilherme.rangoamigo.fragments.DetalhesFragment">
 
-
-    <RelativeLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewId"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="180dp"
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        android:elevation="3dp">
 
+        <RelativeLayout
+            android:id="@+id/frameNome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            app:srcCompat="@drawable/no_image" />
+            <ImageView
+                android:id="@+id/imgDetalheEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:srcCompat="@drawable/no_image" />
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/textoGrande"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imgEvento"
-            android:layout_alignStart="@+id/imgEvento"
-            android:background="@drawable/formato_nome_evento"
-            android:text="Nome do Evento" />
+            <TextView
+                android:id="@+id/txtDetalheNomeEvento"
+                style="@style/textoGrande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imgDetalheEvento"
+                android:layout_alignStart="@+id/imgDetalheEvento"
+                android:background="@drawable/formato_nome_evento"
+                android:text="Nome do Evento" />
+        </RelativeLayout>
 
+    </android.support.v7.widget.CardView>
 
-    </RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        android:elevation="3dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@mipmap/ic_location" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewDatas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        android:elevation="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabDatas"
+                style="@style/AppTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabTextAppearance="@style/AppTabTextAppearance" />
+
+            <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pagerDatas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tabDatas" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

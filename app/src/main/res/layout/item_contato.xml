@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<android.support.v7.widget.CardView
     android:id="@+id/contato_container"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/secondaryTextColor"
-    android:orientation="vertical">
+    android:layout_gravity="center"
+    android:layout_margin="6dp"
+    android:elevation="3dp"
+    app:cardBackgroundColor="@color/secondaryTextColor" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgContato"
@@ -46,4 +55,6 @@
         android:layout_marginEnd="10dp"
         android:text="51 999999999" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+</LinearLayout>
