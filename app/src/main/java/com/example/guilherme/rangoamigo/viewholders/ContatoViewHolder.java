@@ -1,5 +1,7 @@
 package com.example.guilherme.rangoamigo.viewholders;
 
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import com.example.guilherme.rangoamigo.R;
 
 public class ContatoViewHolder  extends RecyclerView.ViewHolder {
 
+    public CardView contatoCard;
     public ImageView imgContato;
     public TextView nomeContato;
     public TextView foneContato;
@@ -21,6 +24,7 @@ public class ContatoViewHolder  extends RecyclerView.ViewHolder {
     public ContatoViewHolder(View view) {
         super(view);
 
+        this.contatoCard = (CardView) view.findViewById(R.id.contato_container);
         this.imgContato = (ImageView) view.findViewById(R.id.imgContato);
         this.nomeContato = (TextView) view.findViewById(R.id.txtNomeContato);
         this.foneContato = (TextView) view.findViewById(R.id.txtFoneContato);

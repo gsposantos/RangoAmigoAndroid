@@ -25,7 +25,10 @@
         <activity android:name=".activities.AcessoActivity" />
         <activity android:name=".activities.PerfilActivity" />
         <activity android:name=".activities.CadastroEventoActivity" />
-        <activity android:name=".activities.DetalheEventoActivity"></activity>
+        <activity android:name=".activities.DetalheEventoActivity" />
+        <activity android:name=".activities.LocalEventoActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.MinWidth"
+            android:label="Local do Evento"></activity>
     </application>
 
 </manifest>

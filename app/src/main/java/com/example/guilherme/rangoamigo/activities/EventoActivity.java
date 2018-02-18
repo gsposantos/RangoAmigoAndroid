@@ -127,7 +127,6 @@ public class EventoActivity extends MasterActivity   {
                 invalidateOptionsMenu();
 
                 if (tabEventoPosition == 0) {
-
                     //atualiar fragment de eventos
 
                 } else if (tabEventoPosition == 1) {

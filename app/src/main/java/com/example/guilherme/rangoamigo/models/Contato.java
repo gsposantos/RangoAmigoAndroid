@@ -8,17 +8,19 @@ import java.util.ArrayList;
 
 public class Contato {
 
-    public boolean cadastrado;
+    public boolean cadastrado = false;
     public String id;
     public String nome;
-    public String foto;
+    public String foto64;
+    public String fotoUri;
     public ArrayList<ContatoEmail> emails;
     public ArrayList<ContatoFone> numeros;
 
     public Contato(String id, String nome, String foto) {
+
         this.id = id;
         this.nome = nome;
-        this.foto = foto;
+        this.fotoUri = foto;
         this.emails = new ArrayList<ContatoEmail>();
         this.numeros = new ArrayList<ContatoFone>();
     }

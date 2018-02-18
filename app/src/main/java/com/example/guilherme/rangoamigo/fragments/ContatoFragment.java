@@ -123,7 +123,7 @@ public class ContatoFragment extends Fragment {
     }
 
     private void atualizaLista(ArrayList<Contato> lista){
-        this.contatoAdapter.setMsgVazio(R.string.convite_sem_registros);
+        this.contatoAdapter.setMsgVazio(R.string.contato_sem_registros);
         this.contatoAdapter.setContatos(lista);
         this.contatoAdapter.notifyDataSetChanged();
     }
@@ -235,8 +235,8 @@ public class ContatoFragment extends Fragment {
                     for (int i = 0; i < listaContatos.size(); i++) {
                         bProxContato = false;
                         for (int j = 0; j < listaContatos.get(i).numeros.size(); j++) {
-                            for(int l = 0; l < retornoContatos.Dados.size(); l++){
-                                if(listaContatos.get(i).numeros.get(j).numero == retornoContatos.Dados.get(l).CelNumero) {
+                            for (int l = 0; l < retornoContatos.Dados.size(); l++) {
+                                if (listaContatos.get(i).numeros.get(j).numero == retornoContatos.Dados.get(l).CelNumero) {
 
                                     //limpa os telefones e adiciona o telefoen encontrado.
                                     oFone = new ContatoFone(listaContatos.get(i).numeros.get(j).fone, listaContatos.get(i).numeros.get(j).tipo);
@@ -246,22 +246,24 @@ public class ContatoFragment extends Fragment {
                                     listaContatos.get(i).cadastrado = true;
 
                                     //pega o email cadastrado se nao tiver email no contato.
-                                    if(listaContatos.get(i).emails.size()==0){
+                                    if (listaContatos.get(i).emails.size() == 0) {
                                         oEmail = new ContatoEmail(retornoContatos.Dados.get(l).Email, "");
                                         listaContatos.get(i).emails.add(oEmail);
                                     }
 
                                     //pega o foto cadastrada se nao tiver imagem no contato.
-                                    if(listaContatos.get(i).foto == null && !retornoContatos.Dados.get(l).Foto.isEmpty()){
-                                        listaContatos.get(i).foto = retornoContatos.Dados.get(l).Foto;
+                                    if ((listaContatos.get(i).fotoUri == null || listaContatos.get(i).fotoUri.isEmpty()) && !retornoContatos.Dados.get(l).Foto.isEmpty()) {
+                                        listaContatos.get(i).foto64 = retornoContatos.Dados.get(l).Foto;
                                     }
+
+                                    listaContatos.get(i).cadastrado = true;
 
                                     //passa para o próximo contato
                                     bProxContato = true;
                                     break;
                                 }
                             }
-                            if(bProxContato) break;
+                            if (bProxContato) break;
                         }
                     }
                 }

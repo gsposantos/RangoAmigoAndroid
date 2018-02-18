@@ -12,6 +12,8 @@
 
     <string name="evento_sem_registros">Você não tem eventos cadastrados.</string>
     <string name="convite_sem_registros">Você não tem convites cadastrados.</string>
+    <string name="contato_sem_registros">Você não tem contatos cadastrados.</string>
+    <string name="contato_sem_email">Email não cadastrado</string>
 
     <string name="acesso_txtAjudaSms">Enviamos um código por SMS para o telefone informado.</string>
     <string name="acesso_txtAjudaAcesso">Por favor, informe esse código para prosseguir.</string>
@@ -20,6 +22,10 @@
     <string name="perfil_hintNome">Nome</string>
     <string name="perfil_hintEmail">Email</string>
     <string name="perfil_btnSalvar">Salvar</string>
+
+    <string name="localEvento_btnLocal">Ver Local</string>
+    <string name="localEvento_btnRota">Acessar Rota</string>
+
 
     <!-- Detalhe Evento-->
     <string name="detalheEvento_titulo">Detalhes do Evento</string>
@@ -41,9 +47,8 @@
     <string name="nav_item_logout">Sair</string>
     <string name="nav_item_fechar">Fechar</string>
 
-
     <string name="menu_item_sincronizar">Sincronizar</string>
-    <string name="menu_item_atualizar">Sincronizar</string>
+    <string name="menu_item_atualizar">Atualizar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
