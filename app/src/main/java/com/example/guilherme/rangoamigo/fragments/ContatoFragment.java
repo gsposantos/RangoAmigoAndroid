@@ -278,6 +278,11 @@ public class ContatoFragment extends Fragment {
                 Log.i("Sincronizados - >", jsonContatos);
 
             }
+            else
+            {
+                atualizaLista(new ArrayList<Contato>());
+                ((EventoActivity)getActivity()).apresentaMensagem("Erro", "Dados não encotrados.");
+            }
 
             outAnimation = new AlphaAnimation(1f, 0f);
             outAnimation.setDuration(200);

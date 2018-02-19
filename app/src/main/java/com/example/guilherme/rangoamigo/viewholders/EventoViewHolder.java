@@ -39,7 +39,6 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View view) {
 
-        //Toast.makeText(view.getContext(), "Evento = " + String.valueOf(this.codEvento), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(view.getContext(), DetalheEventoActivity.class);
         intent.putExtra("CodEvento", String.valueOf(this.codEvento));
             view.getContext().startActivity(intent);

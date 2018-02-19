@@ -191,6 +191,11 @@ public class ConviteFragment extends Fragment {
 
                 Log.i("ObjetoJson - >",jsonObject.toString());
             }
+            else
+            {
+                atualizaLista(new ArrayList<Evento>());
+                ((EventoActivity)getActivity()).apresentaMensagem("Erro", "Dados não encotrados.");
+            }
 
             outAnimation = new AlphaAnimation(1f, 0f);
             outAnimation.setDuration(200);

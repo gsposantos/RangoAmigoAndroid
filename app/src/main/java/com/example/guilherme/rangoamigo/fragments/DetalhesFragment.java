@@ -11,15 +11,22 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guilherme.rangoamigo.R;
 import com.example.guilherme.rangoamigo.activities.DetalheEventoActivity;
 import com.example.guilherme.rangoamigo.activities.LocalEventoActivity;
+import com.example.guilherme.rangoamigo.adapters.ParticipacaoAdapter;
 import com.example.guilherme.rangoamigo.adapters.ViewPagerAdapter;
+import com.example.guilherme.rangoamigo.models.ConfimacaoEvento;
 import com.example.guilherme.rangoamigo.models.Evento;
 import com.example.guilherme.rangoamigo.utils.image.ControleImagem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +41,10 @@ public class DetalhesFragment extends Fragment {
     private TabLayout tabDatas;
     private ViewPagerAdapter pagerAdapter;
     private Evento oEvento;
+
+    private ArrayList<String> listDatas;
+    private HashMap<String, ArrayList<ConfimacaoEvento>> listParticipacao;
+    private ExpandableListView expandableListView;
 
     public DetalhesFragment() {
         // Required empty public constructor
@@ -59,14 +70,9 @@ public class DetalhesFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //desvia para mapas
-//                Uri gmmIntentUri = Uri.parse("google.navigation:?q=Mercado Público, Porto Alegre");
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                if (null != mapIntent.resolveActivity(getActivity().getPackageManager())) {
-//                    startActivity(mapIntent);
-//                }
                 Intent intent = new Intent(getActivity(), LocalEventoActivity.class);
+                intent.putExtra("EnderecoEvento", oEvento.Endereco);
+                intent.putExtra("LocalEvento", oEvento.NomeLocal);
                 startActivity(intent);
 
             }
@@ -77,6 +83,31 @@ public class DetalhesFragment extends Fragment {
 //
 //        this.tabDatas = (TabLayout) view.findViewById(R.id.tabDatas);
 //        this.tabDatas.setupWithViewPager(this.viewPagerDatas);
+
+
+        expandableListView = (ExpandableListView) view.findViewById(R.id.listDatas);
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                //Toast.makeText(ExpandableList.this, "Group: "+groupPosition+"| Item: "+childPosition, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener(){
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                //Toast.makeText(ExpandableList.this, "Group (Expand): "+groupPosition, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener(){
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                //Toast.makeText(ExpandableList.this, "Group (Collapse): "+groupPosition, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
@@ -117,7 +148,19 @@ public class DetalhesFragment extends Fragment {
         txtEnderecoEvento.setText(oEvento.Endereco);
 
         //Datas ...
+        listDatas = new ArrayList<String>();
+        listParticipacao = new HashMap<String, ArrayList<ConfimacaoEvento>>();
 
+        for(int i = 0; i < oEvento.Datas.size(); i++){
+            listDatas.add(oEvento.Datas.get(i).DiaEventoFormatado);
+            ArrayList<ConfimacaoEvento> qtds = new ArrayList<ConfimacaoEvento>();
+            qtds.add(new ConfimacaoEvento(oEvento.Datas.get(i).Quorum, oEvento.Datas.get(i).Participacao.size()));
+            listParticipacao.put(oEvento.Datas.get(i).DiaEventoFormatado, qtds);
+        }
+
+        ParticipacaoAdapter oPartAdapter = new ParticipacaoAdapter(getActivity(), listDatas, listParticipacao);
+        expandableListView.setAdapter(oPartAdapter);
+        oPartAdapter.notifyDataSetChanged();
 
         divNome.setVisibility(View.VISIBLE);
         divDatas.setVisibility(View.VISIBLE);
