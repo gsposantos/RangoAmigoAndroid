@@ -172,6 +172,10 @@ public class EventoActivity extends MasterActivity   {
         viewPager.setAdapter(pagerAdapter);
     }
 
+    private String getTagFragment(int viewId, long id) {
+        return "android:switcher:" + viewId + ":" + id;
+    }
+
     public void apresentaMensagem(String sTitulo, String sMensagem){
         this.showAlert(sTitulo, sMensagem);
     }
@@ -206,6 +210,9 @@ public class EventoActivity extends MasterActivity   {
 
         //pega o id do item
         int id = item.getItemId();
+        String sFragTag;
+
+        FragmentManager fm = getSupportFragmentManager();
 
         switch (id){
 
@@ -216,11 +223,20 @@ public class EventoActivity extends MasterActivity   {
 
             case R.id.menu_item_sincronizar:
                 //para sincronizar os contatos deve chamar o método do fragment de contatos.
-
+                sFragTag = getTagFragment(viewPagerEvento.getId(), 2);
+                ContatoFragment contatosEvento = (ContatoFragment) fm.findFragmentByTag(sFragTag);
+                contatosEvento.carregaContatos();
                 return true;
 
             case R.id.menu_item_atualizar_eventos:
                 //para atualizar os eventos deve chamar o método do fragment de eventos.
+                sFragTag = getTagFragment(viewPagerEvento.getId(), 0);
+                EventoFragment fragEvento = (EventoFragment) fm.findFragmentByTag(sFragTag);
+                fragEvento.carregaEventos();
+
+                sFragTag = getTagFragment(viewPagerEvento.getId(), 1);
+                ConviteFragment fragConvite = (ConviteFragment) fm.findFragmentByTag(sFragTag);
+                fragConvite.carregaConvites();
 
                 return true;
             default:

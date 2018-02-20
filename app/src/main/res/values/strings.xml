@@ -50,6 +50,13 @@
     <string name="menu_item_sincronizar">Sincronizar</string>
     <string name="menu_item_atualizar">Atualizar</string>
 
+    <string name="menu_item_aceitar">Aceitar Convite</string>
+    <string name="menu_item_recusar">Recusar Convite</string>
+    <string name="menu_item_sugerir">Sugerir Data</string>
+
+    <string name="menu_item_editar">Editar Evento</string>
+    <string name="menu_item_apagar">Excluir Evento</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

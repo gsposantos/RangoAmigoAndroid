@@ -6,6 +6,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,22 +50,25 @@ public class LocalEventoActivity extends MasterActivity {
         String sLocalEvento = it.getStringExtra("LocalEvento");
 
         if (!sEnderecoEvento.isEmpty() && !sLocalEvento.isEmpty()) {
-            sLocalConsulta = sEnderecoEvento + "-" + sLocalEvento;
+            sLocalConsulta = sEnderecoEvento + " - " + sLocalEvento;
         } else if (!sEnderecoEvento.isEmpty()) {
             sLocalConsulta = sEnderecoEvento;
         } else if (!sLocalEvento.isEmpty()) {
             sLocalConsulta = sLocalEvento;
         }
 
-        //Buscar a localizcao antes do cliente escolher mapa
-        //GeoLocalAsyncTask ... vai ter que separar dessa classe
+        this.consultaLocalizado(sLocalConsulta);
 
         this.btnLocal = (Button) findViewById(R.id.btnLocal);
         this.btnLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Uri gmmIntentUri = Uri.parse("google.streetview:cbll=" + String.valueOf(latitude) + "," + String.valueOf(longitude));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (null != mapIntent.resolveActivity(getPackageManager())) {
+                    startActivity(mapIntent);
+                }
             }
         });
 
@@ -73,10 +77,10 @@ public class LocalEventoActivity extends MasterActivity {
             @Override
             public void onClick(View view) {
                 //desvia para mapas
-
                 /*TODO: Consultar Localizacao lat e long*/
 
-                Uri gmmIntentUri = Uri.parse("google.navigation:?q=" + sLocalConsulta);
+                //Uri gmmIntentUri = Uri.parse("google.navigation:?q=" + sLocalConsulta);
+                Uri gmmIntentUri = Uri.parse("google.navigation:?q=" + String.valueOf(latitude) + "," + String.valueOf(longitude));
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
 
@@ -89,26 +93,33 @@ public class LocalEventoActivity extends MasterActivity {
     }
 
     public void consultaLocalizado(String sLocalEvento) {
+        GeoLocalAsyncTask task = new GeoLocalAsyncTask();
         try {
             Geocoder selected_place_geocoder = new Geocoder(this);
             List<Address> address;
 
             address = selected_place_geocoder.getFromLocationName(sLocalEvento, 5);
 
-            if (address == null) {
-                //d.dismiss();
-            } else {
+            if (address != null && address.size()>0) {
                 Address location = address.get(0);
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-
             }
-
+            else {
+                // Executa task para consulta
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                } else {
+                    task.execute();
+                }
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-
             // Executa task para consulta
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                task.execute();
+            }
         }
     }
 
@@ -137,9 +148,6 @@ public class LocalEventoActivity extends MasterActivity {
 
         @Override
         protected JSONObject doInBackground(Void... voids) {
-
-
-            //?address=" + this.place + "&sensor=false";
 
             try {
 
@@ -170,27 +178,6 @@ public class LocalEventoActivity extends MasterActivity {
             if (jsonObject != null) {
 
                 try {
-                    /*
-                    //JSONObject jsonObj = new JSONObject(result.toString());
-                    jsonArray = jsonObject.getJSONArray("results");
-
-                    // Extract the Place descriptions from the results
-                    // resultList = new ArrayList<String>(resultJsonArray.length());
-
-                    JSONObject before_geometry_jsonObj = jsonArray.getJSONObject(0);
-
-                    JSONObject geometry_jsonObj = before_geometry_jsonObj.getJSONObject("geometry");
-
-                    JSONObject location_jsonObj = geometry_jsonObj.getJSONObject("location");
-
-                    String lat_helper = location_jsonObj.getString("lat");
-                    double lat = Double.valueOf(lat_helper);
-
-                    String lng_helper = location_jsonObj.getString("lng");
-                    double lng = Double.valueOf(lng_helper);
-
-                    //LatLng point = new LatLng(lat, lng);
-                    */
 
                     longitude = ((JSONArray) jsonObject.get("results")).getJSONObject(0)
                             .getJSONObject("geometry").getJSONObject("location")

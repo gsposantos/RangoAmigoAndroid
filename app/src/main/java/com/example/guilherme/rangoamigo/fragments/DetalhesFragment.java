@@ -109,6 +109,8 @@ public class DetalhesFragment extends Fragment {
             }
         });
 
+        expandableListView.setGroupIndicator(getResources().getDrawable(R.drawable.icon_group));
+
         return view;
     }
 
@@ -165,6 +167,8 @@ public class DetalhesFragment extends Fragment {
         divNome.setVisibility(View.VISIBLE);
         divDatas.setVisibility(View.VISIBLE);
         divLocal.setVisibility(View.VISIBLE);
+
+        this.oEvento = oEvento;
 
     }
 
