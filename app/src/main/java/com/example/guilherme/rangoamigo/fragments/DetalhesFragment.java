@@ -156,7 +156,7 @@ public class DetalhesFragment extends Fragment {
         for(int i = 0; i < oEvento.Datas.size(); i++){
             listDatas.add(oEvento.Datas.get(i).DiaEventoFormatado);
             ArrayList<ConfimacaoEvento> qtds = new ArrayList<ConfimacaoEvento>();
-            qtds.add(new ConfimacaoEvento(oEvento.Datas.get(i).Quorum, oEvento.Datas.get(i).Participacao.size()));
+            qtds.add(new ConfimacaoEvento(oEvento.Datas.get(i).Participacao.size(), oEvento.Datas.get(i).Quorum));
             listParticipacao.put(oEvento.Datas.get(i).DiaEventoFormatado, qtds);
         }
 

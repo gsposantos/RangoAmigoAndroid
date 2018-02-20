@@ -1,6 +1,7 @@
 package com.example.guilherme.rangoamigo.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,6 +100,7 @@ public class ParticipacaoAdapter extends BaseExpandableListAdapter {
             convertView.setTag(holder);
 
             holder.txtQtd = (TextView) convertView.findViewById(R.id.txtQtd);
+            holder.progBarQuantidade = (ProgressBar) convertView.findViewById(R.id.progBarQuantidade);
         }
         else{
             holder = (ViewHolderItem) convertView.getTag();
@@ -106,6 +108,12 @@ public class ParticipacaoAdapter extends BaseExpandableListAdapter {
 
         //holder.tvItem.setText(val);
         holder.txtQtd.setText(String.valueOf(val.qtdConfirmados) + " / " + String.valueOf(val.qtdConvidados));
+
+        if(val.qtdConfirmados > 0 && val.qtdConvidados > 0) {
+            double razao = (double)val.qtdConfirmados/(double)val.qtdConvidados;
+            int progresso = (int) Math.round(razao * 100);
+            holder.progBarQuantidade.setProgress(progresso);
+        }
 
         return convertView;
     }
