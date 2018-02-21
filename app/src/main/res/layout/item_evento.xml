@@ -9,7 +9,7 @@
         android:layout_height="105dp"
         android:layout_gravity="center"
         android:layout_margin="6dp"
-        android:elevation="3dp"
+        android:elevation="6dp"
         app:cardBackgroundColor="@color/secondaryTextColor" >
 
         <RelativeLayout

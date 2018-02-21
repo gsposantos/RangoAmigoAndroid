@@ -223,6 +223,7 @@ public class EventoActivity extends MasterActivity   {
                 //para sincronizar os contatos deve chamar o método do fragment de contatos.
                 sFragTag = getTagFragment(viewPagerEvento.getId(), 2);
                 ContatoFragment contatosEvento = (ContatoFragment) fm.findFragmentByTag(sFragTag);
+                contatosEvento.buscaContaotosDipositivo();
                 contatosEvento.carregaContatos();
                 return true;
 

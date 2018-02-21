@@ -102,7 +102,9 @@ public class ContatoAdapter extends RecyclerView.Adapter {
                 contatoHolder.emailContato.setText(R.string.contato_sem_email);
 
             if(!contato.cadastrado){
-                contatoHolder.contatoCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.secondaryLightColor));
+                contatoHolder.context = context;
+                contatoHolder.destaque = true;
+                contatoHolder.contatoCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.secondaryLightColorAlfa));
             }
         }
         else if(tipo == VIEW_VAZIO){

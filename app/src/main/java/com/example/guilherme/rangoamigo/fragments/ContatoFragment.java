@@ -31,6 +31,7 @@ import com.example.guilherme.rangoamigo.utils.access.AcessoPreferences;
 import com.example.guilherme.rangoamigo.utils.access.PesquisaContato;
 import com.example.guilherme.rangoamigo.utils.connections.JSONParser;
 import com.example.guilherme.rangoamigo.utils.connections.NetworkState;
+import com.example.guilherme.rangoamigo.utils.layout.RecyclerItemClickListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -82,6 +83,20 @@ public class ContatoFragment extends Fragment {
         RecyclerView.LayoutManager layout = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
 
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                // faz nada nesse caso
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                //pega o contato para enviar convite para usar app
+                Contato oContato = listaContatos.get(position);
+            }
+
+        }));
+
         AcessoPreferences.setContext(this.getContext());
 
         if(AcessoPreferences.getDadosContatos().isEmpty()){
@@ -111,7 +126,7 @@ public class ContatoFragment extends Fragment {
         }
     }
 
-    private void buscaContaotosDipositivo()
+    public void buscaContaotosDipositivo()
     {
         // Verifica SDK e se ja foi dado permissao
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && getContext().checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
