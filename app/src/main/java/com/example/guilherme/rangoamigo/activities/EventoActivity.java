@@ -181,7 +181,6 @@ public class EventoActivity extends MasterActivity   {
     }
 
     /* EVENTO ACTION BAR */
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -220,7 +219,6 @@ public class EventoActivity extends MasterActivity   {
                 // clicou no icone para abrir o mennu
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-
             case R.id.menu_item_sincronizar:
                 //para sincronizar os contatos deve chamar o método do fragment de contatos.
                 sFragTag = getTagFragment(viewPagerEvento.getId(), 2);

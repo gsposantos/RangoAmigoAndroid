@@ -10,7 +10,7 @@ import java.util.Date;
 public class DataEvento {
 
     //nao utilizar :: pode ser q de problema no parse do json
-    //public String DiaEvento;
+    public String DiaEvento;
     //public String DiaEventoEnvio;
 
     //campos desnecessário. Remover este campo e testar como fica o parse do json
