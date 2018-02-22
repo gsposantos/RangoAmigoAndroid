@@ -93,6 +93,7 @@ public class ContatoFragment extends Fragment {
             public void onItemLongClick(View view, int position) {
                 //pega o contato para enviar convite para usar app
                 Contato oContato = listaContatos.get(position);
+                ((EventoActivity)getActivity()).addContatoConvite(oContato);
             }
 
         }));

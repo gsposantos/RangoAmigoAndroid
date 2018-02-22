@@ -377,6 +377,8 @@ public class DetalheEventoActivity extends MasterActivity {
                             oDataEventoVoto.CelNumero = oPerfilAux.CelNumero;
                             oDataEventoVoto.Voto = false; //sempre false para o voto
 
+                            oDataEvento.DiaEvento = oEvento.Datas.get(i).DiaEvento;
+
                             oDataEvento.Participacao.add(oDataEventoVoto);
                             oEventoAux.Datas.add(oDataEvento);
                         }
@@ -405,9 +407,10 @@ public class DetalheEventoActivity extends MasterActivity {
 
                     case ACAO_REMOVER:
                         //url = url + "api/eventos/DetalharEvento";
+                        showAlert("Informação!", "Evento não implementado.");
                         return null;
-
                     default:
+                       showAlert("Informação!", "Evento não implementado.");
                        return null;                }
 
 
@@ -424,14 +427,14 @@ public class DetalheEventoActivity extends MasterActivity {
         protected void onPostExecute(JSONObject jsonObject) {
 
             JSONArray jsonArray;
+            Gson gson = new Gson();
 
             if(jsonObject != null){
 
                 switch (botaoAcionado) {
                     case ACAO_OBTER:
-                        Gson gson = new Gson();
-                        Type listType = new TypeToken<RetornoSimples<Evento>>() {
-                        }.getType();
+
+                        Type listType = new TypeToken<RetornoSimples<Evento>>() {}.getType();
                         RetornoSimples<Evento> retornoEventos = gson.fromJson(jsonObject.toString(), listType);
 
                         if (retornoEventos.Ok) {
@@ -450,7 +453,6 @@ public class DetalheEventoActivity extends MasterActivity {
                                 convidadosEvento.carregaConvidadosEvento(oEvento.Convidados);
 
                                 //verifica organizdor do evento
-
                                 for (int i = 0; i < oEvento.Convidados.size(); i++) {
                                     if (oEvento.Convidados.get(i).Organizador) {
                                         if (getPerfilPreferences().CelNumero == oEvento.Convidados.get(i).CelNumero) {
@@ -459,7 +461,6 @@ public class DetalheEventoActivity extends MasterActivity {
                                         }
                                     }
                                 }
-
                                 //recarrega menu
                                 invalidateOptionsMenu();
 
@@ -472,11 +473,25 @@ public class DetalheEventoActivity extends MasterActivity {
                         }
 
                         Log.i("eventosJson - >", jsonObject.toString());
+                        break;
 
                     case ACAO_RECUSAR:
-                        //
                     case ACAO_DATAADD:
-                        //
+                        Type retType = new TypeToken<RetornoSimples<Integer>>() {}.getType();
+                        RetornoSimples<Integer> retornoAlterar = gson.fromJson(jsonObject.toString(), retType);
+
+                        if (retornoAlterar.Ok) {
+                            showAlert("Ok!", "Operação realizada com sucesso.");
+                        }
+                        else {
+                            //mensagem de erro
+                            showAlert("Informação", retornoAlterar.Mensagem);
+                        }
+
+                        botaoAcionado = ACAO_OBTER;
+                        executaDetalheEvento();
+
+                        break;
                 }
 
             }

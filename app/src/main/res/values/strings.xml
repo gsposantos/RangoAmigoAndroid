@@ -47,6 +47,7 @@
     <string name="nav_item_logout">Sair</string>
     <string name="nav_item_fechar">Fechar</string>
 
+    <string name="menu_item_convidar">Enviar Convite</string>
     <string name="menu_item_sincronizar">Sincronizar</string>
     <string name="menu_item_atualizar">Atualizar</string>
 

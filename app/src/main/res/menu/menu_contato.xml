@@ -5,4 +5,8 @@
         android:id="@+id/menu_item_sincronizar"
         android:title="@string/menu_item_sincronizar" />
 
+    <item
+        android:id="@+id/menu_item_convidar"
+        android:title="@string/menu_item_convidar" />
+
 </menu>

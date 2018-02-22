@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.guilherme.rangoamigo.R;
@@ -30,6 +31,7 @@ import com.example.guilherme.rangoamigo.adapters.ViewPagerAdapter;
 import com.example.guilherme.rangoamigo.fragments.ContatoFragment;
 import com.example.guilherme.rangoamigo.fragments.ConviteFragment;
 import com.example.guilherme.rangoamigo.fragments.EventoFragment;
+import com.example.guilherme.rangoamigo.models.Contato;
 import com.example.guilherme.rangoamigo.utils.access.AcessoPreferences;
 
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class EventoActivity extends MasterActivity   {
     private ViewPager viewPagerEvento;
     private TabLayout tabEvento;
     private int tabEventoPosition;
+    private ArrayList<Contato> contatoConvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,8 @@ public class EventoActivity extends MasterActivity   {
         this.tabEvento = (TabLayout) findViewById(R.id.tabEventos);
         this.tabEvento.setupWithViewPager(this.viewPagerEvento);
 
+        contatoConvite = new ArrayList<Contato>();
+
         tabEvento.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -180,6 +185,11 @@ public class EventoActivity extends MasterActivity   {
         this.showAlert(sTitulo, sMensagem);
     }
 
+    public void addContatoConvite(Contato oContato){
+        contatoConvite.add(oContato);
+    }
+
+
     /* EVENTO ACTION BAR */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -226,6 +236,14 @@ public class EventoActivity extends MasterActivity   {
                 contatosEvento.buscaContaotosDipositivo();
                 contatosEvento.carregaContatos();
                 return true;
+
+            case R.id.menu_item_convidar:
+                if(contatoConvite.size()>0){
+                    showAlert("Informação!", "Funcionalidade não implementada ... ainda.");
+                }
+                else {
+                    showAlert("Informação!", "Selecione (com toque longo) um contato em destaque para selecionar e enviar o um convite.");
+                }
 
             case R.id.menu_item_atualizar_eventos:
                 //para atualizar os eventos deve chamar o método do fragment de eventos.
