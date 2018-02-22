@@ -65,6 +65,11 @@
         <item name="android:padding">15dp</item>
     </style>
 
+    <style name="botaoNavegar">
+        <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
     <style name="textoGrandeBranco">
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:textStyle">bold</item>

@@ -5,10 +5,7 @@
     <solid
         android:color="@color/primaryDarkColorAlfa" >
     </solid>
-    <stroke
-        android:width="2dp"
-        android:color="@color/primaryDarkColor" >
-    </stroke>
+
     <padding
         android:left="15dp"
         android:top="5dp"

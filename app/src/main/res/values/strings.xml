@@ -26,6 +26,9 @@
     <string name="localEvento_btnLocal">Ver Local</string>
     <string name="localEvento_btnRota">Acessar Rota</string>
 
+    <string name="cadEvento_btnVoltar">Voltar</string>
+    <string name="cadEvento_btnAvancar">Avançar</string>
+
 
     <!-- Detalhe Evento-->
     <string name="detalheEvento_titulo">Detalhes do Evento</string>
