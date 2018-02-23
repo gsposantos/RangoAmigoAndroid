@@ -3,6 +3,7 @@ package com.example.guilherme.rangoamigo.activities;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,7 @@ public class EventoActivity extends MasterActivity   {
     private TabLayout tabEvento;
     private int tabEventoPosition;
     private ArrayList<Contato> contatoConvite;
+    private FloatingActionButton btnNovoEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,15 @@ public class EventoActivity extends MasterActivity   {
 
         //instancia o DrawerLayout da main activity para ter o controle
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_eventos);
+
+        btnNovoEvento = (FloatingActionButton) findViewById(R.id.btnNovoEvento);
+        btnNovoEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventoActivity.this, CadastroEventoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //instancia o NavigationView da main activity para ter o controle
         navigationView = (NavigationView) findViewById(R.id.navigation_view_eventos);

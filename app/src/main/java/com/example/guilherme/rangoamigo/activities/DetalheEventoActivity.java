@@ -166,6 +166,7 @@ public class DetalheEventoActivity extends MasterActivity {
 
         Intent intent = new Intent(DetalheEventoActivity.this, CadastroEventoActivity.class);
         //parametros
+        intent.putExtra("CodEvento", sCodEvento);
         startActivity(intent);
 
     }

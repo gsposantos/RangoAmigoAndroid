@@ -81,6 +81,15 @@ public class CadastroEventoActivity extends MasterActivity {
         Intent it = getIntent();
         String sCodEvento = it.getStringExtra("CodEvento");
 
+        if(sCodEvento != null){
+            showAlert("Aviso!", "Edição de Evento não Implementado", new AlertDialogCallback() {
+                @Override
+                public void call() {
+                    finish();
+                }
+            });
+        }
+
         txtEtapa = (TextView) findViewById(R.id.txtEtapa);
 
         // toolbar
