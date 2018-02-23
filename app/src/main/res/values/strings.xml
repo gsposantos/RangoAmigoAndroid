@@ -29,6 +29,10 @@
     <string name="cadEvento_btnVoltar">Voltar</string>
     <string name="cadEvento_btnAvancar">Avançar</string>
 
+    <string name="cadEvento_hintEndereco">Endereço</string>
+    <string name="cadEvento_hintNomeLocal">Nome do Local</string>
+    <string name="cadEvento_btnVerMapa">Ver Mapa</string>
+
 
     <!-- Detalhe Evento-->
     <string name="detalheEvento_titulo">Detalhes do Evento</string>
@@ -63,6 +67,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
