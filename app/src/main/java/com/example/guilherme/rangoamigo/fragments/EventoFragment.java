@@ -67,7 +67,7 @@ public class EventoFragment extends Fragment {
 
         progBarHolder = (FrameLayout) view.findViewById(R.id.progBarHolder);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recViewEvento);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
         recyclerView.setAdapter(eventoAdapter);

@@ -23,7 +23,8 @@
             android:layout_margin="30dp"
             android:clickable="true"
             app:backgroundTint="@color/secondaryLightColor"
-            app:fabSize="normal" />
+            app:fabSize="normal"
+            app:srcCompat="@drawable/add_evento_b" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarEvento"

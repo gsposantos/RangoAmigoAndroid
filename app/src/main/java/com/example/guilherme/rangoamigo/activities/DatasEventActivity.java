@@ -3,6 +3,7 @@ package com.example.guilherme.rangoamigo.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.example.guilherme.rangoamigo.R;
 import com.example.guilherme.rangoamigo.adapters.DataEventoAdapter;
@@ -44,6 +46,9 @@ public class DatasEventActivity extends MasterActivity {
     private ArrayList<DataEvento> listaDatas;
     private Perfil oPerfilAux;
     private Button btnGravar;
+    private FrameLayout progBarHolder;
+    private AlphaAnimation outAnimation;
+    private AlphaAnimation inAnimation;
 
 
     @Override
@@ -65,6 +70,7 @@ public class DatasEventActivity extends MasterActivity {
         oEventoDataVoto.Datas = new ArrayList<DataEvento>();
 
         DataEvento oDataEventoAux;
+        DataEventoVoto oDtVoto;
 
         //recupera apenas as datas para adicionar a participacao depois
         for(int i = 0 ; i < oEvento.Datas.size() ; i++){
@@ -73,7 +79,16 @@ public class DatasEventActivity extends MasterActivity {
             oDataEventoAux.DiaEvento = oEvento.Datas.get(i).DiaEvento;
             oDataEventoAux.Original = oEvento.Datas.get(i).Original;
 
+            oDataEventoAux.Participacao = new ArrayList<DataEventoVoto>();
+
+            oDtVoto = new DataEventoVoto();
+            oDtVoto.CelNumero = oPerfilAux.CelNumero;
+            oDtVoto.Voto = false;
+
+            oDataEventoAux.Participacao.add(oDtVoto);
+
             oEventoDataVoto.Datas.add(oDataEventoAux);
+
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recViewDatas);
@@ -94,17 +109,27 @@ public class DatasEventActivity extends MasterActivity {
             @Override
             public void onItemClick(View view, int position) {
 
+                DataEventoVoto oDtVoto;
+
                 //tenho o voto da posicao que foi clicada
                 DataEventoViewHolder viewHolder = (DataEventoViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
 
                 //Tenho a posicao da data clicada para marcar a participacao.
                 if(oEventoDataVoto.Datas.get(position).Participacao == null){
                     oEventoDataVoto.Datas.get(position).Participacao = new ArrayList<DataEventoVoto>();
-                }
 
-                //Apenas uma participacao por data.
-                oEventoDataVoto.Datas.get(position).Participacao.get(0).CelNumero = oPerfilAux.CelNumero;
-                oEventoDataVoto.Datas.get(position).Participacao.get(0).Voto = viewHolder.chkVoto.isChecked();
+                    oDtVoto = new DataEventoVoto();
+                    oDtVoto.CelNumero = oPerfilAux.CelNumero;
+                    oDtVoto.Voto = !viewHolder.chkVoto.isChecked();
+
+                    oEventoDataVoto.Datas.get(position).Participacao.add(oDtVoto);
+                }
+                else if(oEventoDataVoto.Datas.get(position).Participacao.size() > 0) {
+
+                    //Apenas uma participacao por data.
+                    oEventoDataVoto.Datas.get(position).Participacao.get(0).CelNumero = oPerfilAux.CelNumero;
+                    oEventoDataVoto.Datas.get(position).Participacao.get(0).Voto = !viewHolder.chkVoto.isChecked();
+                }
 
             }
 
@@ -115,11 +140,19 @@ public class DatasEventActivity extends MasterActivity {
 
         }));
 
+        progBarHolder = (FrameLayout) findViewById(R.id.progBarHolder);
+
         btnGravar = (Button) findViewById(R.id.btnGravar);
         btnGravar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                VotoEventoAsyncTask task = new VotoEventoAsyncTask();
 
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                } else {
+                    task.execute();
+                }
             }
         });
 
@@ -154,10 +187,10 @@ public class DatasEventActivity extends MasterActivity {
             }
 
             btnGravar.setEnabled(false);
-//            inAnimation = new AlphaAnimation(0f, 1f);
-//            inAnimation.setDuration(200);
-//            progBarHolder.setAnimation(inAnimation);
-//            progBarHolder.setVisibility(View.VISIBLE);
+            inAnimation = new AlphaAnimation(0f, 1f);
+            inAnimation.setDuration(200);
+            progBarHolder.setAnimation(inAnimation);
+            progBarHolder.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -186,10 +219,10 @@ public class DatasEventActivity extends MasterActivity {
 
             JSONArray jsonArray;
 
-//            outAnimation = new AlphaAnimation(1f, 0f);
-//            outAnimation.setDuration(200);
-//            progBarHolder.setAnimation(outAnimation);
-//            progBarHolder.setVisibility(View.GONE);
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(200);
+            progBarHolder.setAnimation(outAnimation);
+            progBarHolder.setVisibility(View.GONE);
             btnGravar.setEnabled(true);
 
             if(jsonObject != null){

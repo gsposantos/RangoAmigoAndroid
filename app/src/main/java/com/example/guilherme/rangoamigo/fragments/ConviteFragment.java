@@ -64,7 +64,7 @@ public class ConviteFragment extends Fragment {
 
         progBarHolder = (FrameLayout) view.findViewById(R.id.progBarHolder);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recViewConvite);
         listaEventos = new ArrayList<Evento>();
         eventoAdapter = new EventoAdapter(listaEventos, view.getContext());
 

@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.guilherme.rangoamigo.activities.DatasEventActivity">
 
     <TextView
         android:id="@+id/txtLabel"
-        style="@style/texotTitulo"
+        style="@style/textoTituloLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -19,25 +19,26 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recViewDatas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btnGravar"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/txtLabel"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp" />
 
+    <!-- Animacao de progresso apresentada enquando está processando -->
     <Button
         android:id="@+id/btnGravar"
         style="@style/botaoPadrao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="Aceitar" />
+        android:text="Aceitar"
+        android:layout_below="@+id/recViewDatas"
+        android:layout_alignEnd="@+id/txtLabel"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"/>
 
-
+    <include layout="@layout/overlay_prog_bar"/>
 
 </RelativeLayout>
