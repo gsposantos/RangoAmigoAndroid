@@ -29,6 +29,8 @@
     <string name="cadEvento_btnVoltar">Voltar</string>
     <string name="cadEvento_btnAvancar">Avançar</string>
 
+    <string name="cadEvento_hintNomeEvento">Nome Evento</string>
+    <string name="cadEvento_hintData">Data e Hora</string>
     <string name="cadEvento_hintEndereco">Endereço</string>
     <string name="cadEvento_hintNomeLocal">Nome do Local</string>
     <string name="cadEvento_btnVerMapa">Ver Mapa</string>

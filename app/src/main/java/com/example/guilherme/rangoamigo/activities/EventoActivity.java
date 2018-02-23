@@ -177,10 +177,6 @@ public class EventoActivity extends MasterActivity   {
         viewPager.setAdapter(pagerAdapter);
     }
 
-    private String getTagFragment(int viewId, long id) {
-        return "android:switcher:" + viewId + ":" + id;
-    }
-
     public void apresentaMensagem(String sTitulo, String sMensagem){
         this.showAlert(sTitulo, sMensagem);
     }

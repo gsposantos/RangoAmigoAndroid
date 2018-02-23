@@ -76,8 +76,6 @@
     </RelativeLayout>
 
     <!-- Animacao de progresso apresentada enquando está processando -->
-    <include layout="@layout/overlay_prog_bar"
-        android:id="@+id/include" />
-
+    <include layout="@layout/overlay_prog_bar"/>
 
 </RelativeLayout>

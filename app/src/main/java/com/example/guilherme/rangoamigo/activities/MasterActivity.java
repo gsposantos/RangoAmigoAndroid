@@ -98,6 +98,10 @@ public class MasterActivity  extends AppCompatActivity {
                 .show();
     }
 
+    protected String getTagFragment(int viewId, long id) {
+        return "android:switcher:" + viewId + ":" + id;
+    }
+
 //    public void executarAlertOK(){}
 //    public void executarConfirmOK(){}
 //    public void executarConfirmCancel(){}

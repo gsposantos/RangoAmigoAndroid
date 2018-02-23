@@ -42,7 +42,17 @@ public class ContatoViewHolder  extends RecyclerView.ViewHolder  implements View
     public boolean onLongClick(View view) {
 
         if(this.destaque){
-            this.contatoCard.setCardBackgroundColor(ContextCompat.getColor(this.context, R.color.secondaryLightColor));
+
+            int corSelecionado = ContextCompat.getColor(this.context, R.color.secondaryLightColor);
+            int corItem = ContextCompat.getColor(this.context, R.color.secondaryTextColor);
+
+            if(this.contatoCard.getCardBackgroundColor().getDefaultColor() == corSelecionado) {
+                this.contatoCard.setCardBackgroundColor(corItem);
+            }
+            else{
+                this.contatoCard.setCardBackgroundColor(corSelecionado);
+            }
+
         }
         return false;
     }

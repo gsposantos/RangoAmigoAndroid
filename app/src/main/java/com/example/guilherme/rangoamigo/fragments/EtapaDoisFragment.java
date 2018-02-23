@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.guilherme.rangoamigo.R;
+import com.example.guilherme.rangoamigo.activities.CadastroEventoActivity;
+import com.example.guilherme.rangoamigo.models.Evento;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -77,6 +79,35 @@ public class EtapaDoisFragment extends Fragment {
                 txtEndereco.getEditText().setText(place.getAddress());
             }
         }
+    }
+
+
+    public boolean validaDadosEvento()
+    {
+        boolean bRetorno = true;
+
+        if(txtNomeLocal.getEditText().getText().toString().isEmpty())
+        {
+            ((CadastroEventoActivity)getActivity()).apresentaMensagem("Aviso!", "Informe o Nome do Local!");
+            return false;
+        }
+        if(txtEndereco.getEditText().getText().toString().isEmpty())
+        {
+            ((CadastroEventoActivity)getActivity()).apresentaMensagem("Aviso!", "Informe Endereço do Evento!");
+            return false;
+        }
+
+        return bRetorno;
+    }
+
+    public Evento getDatosEvento(Evento oEvento)
+    {
+        Evento oRetEvento = oEvento;
+
+        oRetEvento.NomeLocal = txtNomeLocal.getEditText().getText().toString();
+        oRetEvento.Endereco = txtEndereco.getEditText().getText().toString();
+
+        return oRetEvento;
     }
 
 }

@@ -32,9 +32,16 @@ public class ContatoAdapter extends RecyclerView.Adapter {
     private Context context;
     private ArrayList<Contato> contatos;
     private int msgVazio = 0;
-
+    private boolean bApenasCadastrados = false;
 
     public ContatoAdapter(ArrayList<Contato> contatos, Context context) {
+        this.bApenasCadastrados = false;
+        this.contatos = contatos;
+        this.context = context;
+    }
+
+    public ContatoAdapter(ArrayList<Contato> contatos, Context context, boolean bApenasCadastrados) {
+        this.bApenasCadastrados = bApenasCadastrados;
         this.contatos = contatos;
         this.context = context;
     }
@@ -63,7 +70,6 @@ public class ContatoAdapter extends RecyclerView.Adapter {
             VazioViewHolder holderVazio  = new VazioViewHolder(view);
             return holderVazio;
         }
-
     }
 
     @Override
@@ -101,10 +107,14 @@ public class ContatoAdapter extends RecyclerView.Adapter {
             else
                 contatoHolder.emailContato.setText(R.string.contato_sem_email);
 
+            contatoHolder.context = context;
+
             if(!contato.cadastrado){
-                contatoHolder.context = context;
                 contatoHolder.destaque = true;
                 contatoHolder.contatoCard.setCardBackgroundColor(ContextCompat.getColor(context, R.color.secondaryLightColorAlfa));
+            }
+            else {
+                contatoHolder.destaque = bApenasCadastrados;
             }
         }
         else if(tipo == VIEW_VAZIO){

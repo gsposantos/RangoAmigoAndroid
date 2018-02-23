@@ -17,16 +17,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.EventoActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.SplashScreenActivity" />
-        <activity android:name=".activities.AcessoActivity" />
-        <activity android:name=".activities.PerfilActivity" />
-        <activity android:name=".activities.CadastroEventoActivity">
+        <activity android:name=".activities.SplashScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.AcessoActivity" />
+        <activity android:name=".activities.PerfilActivity" />
+        <activity android:name=".activities.CadastroEventoActivity" />
+
         <activity android:name=".activities.DetalheEventoActivity" />
         <activity
             android:name=".activities.LocalEventoActivity"

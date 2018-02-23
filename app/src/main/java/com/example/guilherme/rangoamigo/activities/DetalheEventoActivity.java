@@ -178,7 +178,7 @@ public class DetalheEventoActivity extends MasterActivity {
         int mesAtual = calendar.get(Calendar.MONTH);
         int diaAtual = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Launch Date Picker Dialog
+        // Abre um Date Picker Dialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(DetalheEventoActivity.this,
             new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -296,10 +296,6 @@ public class DetalheEventoActivity extends MasterActivity {
             default:
                 return false;
         }
-    }
-
-    private String getTagFragment(int viewId, long id) {
-        return "android:switcher:" + viewId + ":" + id;
     }
 
     private Perfil getPerfilPreferences()
