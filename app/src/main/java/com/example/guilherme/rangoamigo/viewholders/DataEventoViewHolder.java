@@ -14,7 +14,7 @@ import com.example.guilherme.rangoamigo.R;
 
 public class DataEventoViewHolder  extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
-    private Switch chkVoto;
+    public Switch chkVoto;
     public TextView txtdataEvento;
 
     public Context context;

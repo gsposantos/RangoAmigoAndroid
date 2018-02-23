@@ -41,6 +41,7 @@ import com.example.guilherme.rangoamigo.models.RetornoSimples;
 import com.example.guilherme.rangoamigo.utils.access.AcessoPreferences;
 import com.example.guilherme.rangoamigo.utils.connections.JSONParser;
 import com.example.guilherme.rangoamigo.utils.connections.NetworkState;
+import com.google.android.gms.common.images.WebImage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -242,6 +243,13 @@ public class DetalheEventoActivity extends MasterActivity {
 
     private void desviaListaDataEvento() {
 
+        Intent intent = new Intent(DetalheEventoActivity.this, DatasEventActivity.class);
+
+        Gson gson = new Gson();
+        String sJsonEvento = gson.toJson(oEvento);
+
+        AcessoPreferences.setDadosEvento(sJsonEvento);
+        startActivity(intent);
 
     }
 

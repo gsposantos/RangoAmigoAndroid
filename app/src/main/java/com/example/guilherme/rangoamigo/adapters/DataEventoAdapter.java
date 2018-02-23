@@ -45,7 +45,7 @@ public class DataEventoAdapter extends RecyclerView.Adapter {
 
         View view;
         if (viewType == VIEW_CONTATOS) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_contato, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.item_data_evento, parent, false);
             DataEventoViewHolder holder = new DataEventoViewHolder(view);
             return holder;
         } else {

@@ -28,6 +28,18 @@ public class AcessoPreferences {
         editor.commit();
     }
 
+    public static String getDadosEvento(){
+        SharedPreferences preferences = AcessoPreferences.mContext.getSharedPreferences(PREFS_NAME, 0);
+        return preferences.getString("evento_json", "");
+    }
+
+    public static void setDadosEvento(String json)
+    {
+        SharedPreferences.Editor editor = AcessoPreferences.mContext.getSharedPreferences(PREFS_NAME, 0).edit();
+        editor.putString("evento_json", json);
+        editor.commit();
+    }
+
     public static String getDadosContatos(){
         SharedPreferences preferences = AcessoPreferences.mContext.getSharedPreferences(PREFS_NAME, 0);
         return preferences.getString("contatos_json", "");
